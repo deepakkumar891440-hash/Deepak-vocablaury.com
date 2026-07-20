@@ -529,6 +529,18 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
+      // 🔊 शब्द बोलने के लिए Text-to-Speech (TTS) फंक्शन
+      function speakWord(text) {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel(); // अगर पहले से कुछ बोल रहा हो तो स्टॉप करें
+          let utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'hi-IN'; // हिंदी भाषा
+          utterance.rate = 0.9;     // बोलने की स्पीड
+          utterance.pitch = 1.0;
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+
       // एरे को रैंडम/शफल करने का फंक्शन
       function shuffleArray(array) {
         let shuffled = [...array];
@@ -539,7 +551,7 @@
         return shuffled;
       }
 
-      // साउंड इफेक्ट्स
+      // साउंड इफेक्ट्स (Beep/Chime)
       function playSound(type) {
         try {
           let ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -678,7 +690,7 @@
 
         let optionsDiv = document.getElementById('options');
         
-        // **यहाँ विकल्पों को Shuffle (रैंडम) किया जा रहा है**
+        // **विकल्पों को Shuffle (रैंडम) किया जा रहा है**
         let randomizedOptions = shuffleArray(wordData.options);
 
         randomizedOptions.forEach(opt => {
@@ -694,11 +706,14 @@
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
+        // **🔊 यहाँ पर सही उत्तर बोलकर बताया जा रहा है**
+        speakWord(correct);
+
         if (selected === correct) {
           score += 10;
           playSound('correct');
           btn.classList.add('correct-btn');
-          setTimeout(() => { nextQ(); }, 1000);
+          setTimeout(() => { nextQ(); }, 1200);
         } else {
           playSound('wrong');
           btn.classList.add('wrong-btn');
@@ -708,7 +723,7 @@
               b.classList.add('correct-btn');
             }
           });
-          setTimeout(() => { nextQ(); }, 1500);
+          setTimeout(() => { nextQ(); }, 1800);
         }
         localStorage.setItem('score', score);
         updateStats();
