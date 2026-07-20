@@ -1,1 +1,39 @@
-hi
+body {
+  font-family: 'Poppins', Arial;
+  background: linear-gradient(135deg, #58A700, #1CB0F6); /* Duolingo Green + Blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.logo { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 10px; }
+h2 { color: #58A700; }
+h1 { font-size: 40px; color: #1CB0F6; margin: 10px 0; }
+button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  background: #58A700;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+  border-bottom: 4px solid #4A8E00;
+}
+button:disabled { background: #ccc; border-bottom: 4px solid #aaa; }
+.progress-bar { width: 100%; background: #E5E5E5; border-radius: 10px; margin: 10px 0; }
+.progress { height: 15px; background: #58A700; border-radius: 10px; transition: 0.5s; }
+.top-bar { display: flex; justify-content: space-between; font-weight: bold; }
