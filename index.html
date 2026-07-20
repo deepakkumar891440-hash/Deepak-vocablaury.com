@@ -4,17 +4,290 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deepak Vocabulary</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    #app {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .progress-bar {
+      background: #e0e0e0;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    .progress {
+      background: #58A700;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+    .logo {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div class="card" id="app">
-    Loading...
-  </div>
 
-  <audio id="correctSound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3"></audio>
-  <audio id="wrongSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
-  
-  <script src="script.js"></script>
+  <!-- मुख्य ऐप कंटेनर -->
+  <div id="app"></div>
+
+  <!-- ऑडियो टैग्स (Sound Effects) -->
+  <audio id="correctSound" src="correct.mp3"></audio>
+  <audio id="wrongSound" src="wrong.mp3"></audio>
+
+  <!-- जावास्क्रिप्ट कोड -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // 1. शब्द डेटाबेस
+      const levels = {
+        1: [
+          { en: "Apple", hi: "सेब", options: ["सेब", "केला", "आम", "अंगूर"] },
+          { en: "Book", hi: "किताब", options: ["किताब", "कलम", "कॉपी", "बैग"] },
+          { en: "Cat", hi: "बिल्ली", options: ["बिल्ली", "कुत्ता", "चूहा", "गाय"] },
+          { en: "Dog", hi: "कुत्ता", options: ["कुत्ता", "बिल्ली", "घोड़ा", "शेर"] },
+          { en: "Water", hi: "पानी", options: ["पानी", "चाय", "दूध", "जूस"] },
+          { en: "Good", hi: "अच्छा", options: ["अच्छा", "बुरा", "सुंदर", "गंदा"] },
+          { en: "Happy", hi: "खुश", options: ["खुश", "उदास", "गुस्सा", "डरा"] },
+          { en: "House", hi: "घर", options: ["घर", "दुकान", "स्कूल", "अस्पताल"] },
+          { en: "Eat", hi: "खाना", options: ["खाना", "पीना", "सोना", "खेलना"] },
+          { en: "Flower", hi: "फूल", options: ["फूल", "पत्ता", "पेड़", "फल"] }
+        ],
+        2: [
+          { en: "Beautiful", hi: "सुंदर", options: ["सुंदर", "बदसूरत", "छोटा", "बड़ा"] },
+          { en: "Friend", hi: "दोस्त", options: ["दोस्त", "दुश्मन", "शिक्षक", "डॉक्टर"] },
+          { en: "Money", hi: "पैसा", options: ["पैसा", "समय", "काम", "नाम"] },
+          { en: "Family", hi: "परिवार", options: ["परिवार", "समाज", "देश", "दुनिया"] },
+          { en: "Country", hi: "देश", options: ["देश", "शहर", "गांव", "राज्य"] },
+          { en: "Health", hi: "स्वास्थ्य", options: ["स्वास्थ्य", "बीमारी", "दवा", "डॉक्टर"] },
+          { en: "Education", hi: "शिक्षा", options: ["शिक्षा", "खेल", "नौकरी", "व्यापार"] },
+          { en: "Travel", hi: "यात्रा", options: ["यात्रा", "घर", "खाना", "सोना"] },
+          { en: "Success", hi: "सफलता", options: ["सफलता", "असफलता", "मेहनत", "भाग्य"] },
+          { en: "Problem", hi: "समस्या", options: ["समस्या", "समाधान", "सवाल", "जवाब"] }
+        ],
+        3: [
+          { en: "Ambition", hi: "महत्वाकांक्षा", options: ["महत्वाकांक्षा", "आलस्य", "डर", "खुशी"] },
+          { en: "Develop", hi: "विकसित करना", options: ["विकसित करना", "खराब करना", "बनाना", "तोड़ना"] },
+          { en: "Environment", hi: "पर्यावरण", options: ["पर्यावरण", "प्रदूषण", "जंगल", "नदी"] },
+          { en: "Technology", hi: "प्रौद्योगिकी", options: ["प्रौद्योगिकी", "विज्ञान", "कला", "इतिहास"] },
+          { en: "Opportunity", hi: "अवसर", options: ["अवसर", "समस्या", "चुनौती", "हार"] },
+          { en: "Responsibility", hi: "जिम्मेदारी", options: ["जिम्मेदारी", "आजादी", "अधिकार", "कानून"] },
+          { en: "Globalization", hi: "वैश्वीकरण", options: ["वैश्वीकरण", "स्थानीयकरण", "विकास", "पतन"] },
+          { en: "Innovation", hi: "नवाचार", options: ["नवाचार", "नकल", "परंपरा", "रिवाज"] },
+          { en: "Sustainable", hi: "टिकाऊ", options: ["टिकाऊ", "नाजुक", "मजबूत", "कमजोर"] },
+          { en: "Leadership", hi: "नेतृत्व", options: ["नेतृत्व", "अनुसरण", "टीम", "कंपनी"] }
+        ]
+      };
+
+      // 2. स्टेट वैरियेबल्स
+      let currentLevel = 1;
+      let currentWord = 0;
+      let score = parseInt(localStorage.getItem('score')) || 0;
+      let completedLevels = JSON.parse(localStorage.getItem('completedLevels')) || [];
+      let streak = parseInt(localStorage.getItem('streak')) || 0;
+      let lastDate = localStorage.getItem('lastDate');
+
+      // Daily Streak कैलकुलेशन
+      function checkStreak() {
+        let today = new Date().toDateString();
+        if (lastDate !== today) {
+          let yesterday = new Date();
+          yesterday.setDate(yesterday.getDate() - 1);
+
+          if (lastDate === yesterday.toDateString()) {
+            streak++;
+          } else {
+            streak = 1;
+          }
+          localStorage.setItem('lastDate', today);
+          localStorage.setItem('streak', streak);
+        }
+      }
+
+      // साउंड प्ले फ़ंक्शन
+      function playSound(type) {
+        let sound = document.getElementById(type + 'Sound');
+        if (sound && typeof sound.play === 'function') {
+          sound.currentTime = 0;
+          sound.play().catch(() => {});
+        }
+      }
+
+      // ऐरे शफल फ़ंक्शन (Fisher-Yates Algorithm)
+      function shuffle(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      // लेवल चुनने की स्क्रीन
+      function loadLevelScreen() {
+        checkStreak();
+        document.getElementById('app').innerHTML = `
+          <img src="./logo.png" alt="Logo" class="logo" style="max-width:120px;">
+          <div class="top-bar">
+            <span>⭐ Score: ${score}</span> 
+            <span>🔥 Streak: ${streak}</span>
+          </div>
+          <h2>📚 Deepak Vocabulary</h2>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
+          <h3>Select Level</h3>
+          
+          <button onclick="startLevel(1)">Level 1 🟢</button>
+          <button onclick="startLevel(2)" ${!completedLevels.includes(1) ? 'disabled' : ''}>
+            Level 2 🟡 ${!completedLevels.includes(1) ? '🔒' : ''}
+          </button>
+          <button onclick="startLevel(3)" ${!completedLevels.includes(2) ? 'disabled' : ''}>
+            Level 3 🔴 ${!completedLevels.includes(2) ? '🔒' : ''}
+          </button>
+          
+          <br><br>
+          <button onclick="resetGame()" style="background-color: #ff4d4d; margin-top: 15px;">Reset Progress 🔄</button>
+        `;
+      }
+
+      // गेम रीसेट फ़ंक्शन
+      window.resetGame = function () {
+        if (confirm("क्या आप अपनी प्रोग्रेस रीसेट करना चाहते हैं?")) {
+          localStorage.clear();
+          score = 0;
+          completedLevels = [];
+          streak = 1;
+          loadLevelScreen();
+        }
+      };
+
+      // लेवल शुरू करना
+      window.startLevel = function (level) {
+        currentLevel = level;
+        currentWord = 0;
+        loadWord();
+      };
+
+      // प्रश्न लोड करना
+      function loadWord() {
+        let wordData = levels[currentLevel][currentWord];
+        let progress = (currentWord / 10) * 100;
+        let shuffledOptions = shuffle(wordData.options);
+
+        document.getElementById('app').innerHTML = `
+          <div class="top-bar">
+            <button onclick="exitToHome()" style="width: auto; padding: 4px 10px; font-size:12px; margin: 0;">🏠 Home</button>
+            <span>⭐ XP: ${score}</span>
+          </div>
+          <div class="progress-bar"><div class="progress" style="width: ${progress}%"></div></div>
+          <h3>Level ${currentLevel} - Word ${currentWord + 1} / 10</h3>
+          <h1 style="font-size: 2.2rem; margin: 15px 0;">${wordData.en}</h1>
+          <div id="options"></div>
+        `;
+
+        let optionsDiv = document.getElementById('options');
+        shuffledOptions.forEach(opt => {
+          let btn = document.createElement('button');
+          btn.innerText = opt;
+          btn.onclick = () => checkAnswer(opt, btn, wordData.hi);
+          optionsDiv.appendChild(btn);
+        });
+      }
+
+      // होम स्क्रीन पर वापस जाने का ऑप्शन
+      window.exitToHome = function() {
+        if (confirm("क्या आप गेम बीच में छोड़ना चाहते हैं?")) {
+          loadLevelScreen();
+        }
+      };
+
+      // उत्तर जांचना
+      window.checkAnswer = function (selected, btn, correct) {
+        let buttons = document.querySelectorAll('#options button');
+        buttons.forEach(b => b.disabled = true);
+
+        if (selected === correct) {
+          score += 10;
+          playSound('correct');
+          btn.style.background = '#58A700';
+          btn.style.color = '#fff';
+          setTimeout(() => { nextQ(); }, 1000);
+        } else {
+          playSound('wrong');
+          btn.style.background = '#d9534f';
+          btn.style.color = '#fff';
+          
+          // सही उत्तर हाइलाइट करना
+          buttons.forEach(b => {
+            if (b.innerText === correct) {
+              b.style.background = '#58A700';
+              b.style.color = '#fff';
+            }
+          });
+          setTimeout(() => { nextQ(); }, 1500);
+        }
+        localStorage.setItem('score', score);
+      };
+
+      // अगला प्रश्न
+      function nextQ() {
+        currentWord++;
+        if (currentWord >= levels[currentLevel].length) {
+          if (!completedLevels.includes(currentLevel)) {
+            completedLevels.push(currentLevel);
+            localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
+          }
+          alert(`🎉 Level ${currentLevel} Complete! Great Job!`);
+          loadLevelScreen();
+        } else {
+          loadWord();
+        }
+      }
+
+      // गेम चालू करें
+      loadLevelScreen();
+    });
+  </script>
 </body>
 </html>
