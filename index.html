@@ -264,27 +264,12 @@
       color: #4a1f00;
       cursor: pointer;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: all 0.1s;
     }
 
     .option-btn:active {
       transform: translateY(2px);
       box-shadow: 0 2px 0 #ffd8c2;
-    }
-
-    /* Correct/Wrong State Styling */
-    .option-btn.correct-btn {
-      background: #4CAF50 !important;
-      border-color: #388E3C !important;
-      color: #ffffff !important;
-      box-shadow: 0 4px 0 #2E7D32 !important;
-    }
-
-    .option-btn.wrong-btn {
-      background: #F44336 !important;
-      border-color: #D32F2F !important;
-      color: #ffffff !important;
-      box-shadow: 0 4px 0 #C62828 !important;
     }
 
     .quiz-progress-bg {
@@ -304,88 +289,71 @@
       border-radius: 10px;
     }
 
-    /* जीत की स्क्रीन (2nd Image Style Level Completion) */
-    .level-complete-card {
+    /* जीत की स्क्रीन (Victory Screen + Round Next Level Button) */
+    .victory-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px 10px;
-      animation: fadeIn 0.4s ease-out;
+      padding: 30px 10px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .trophy-container {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .trophy-icon {
-      font-size: 100px;
-      filter: drop-shadow(0 8px 12px rgba(255, 170, 0, 0.35));
-    }
-
-    .purple-ribbon {
-      background: linear-gradient(180deg, #6b21a8 0%, #581c87 100%);
-      color: white;
-      font-size: 32px;
-      font-weight: 900;
-      padding: 10px 45px;
-      border-radius: 20px;
-      box-shadow: 0 6px 0 #3b0764;
+    .victory-icon {
+      font-size: 80px;
       margin-bottom: 10px;
-      display: inline-block;
-      letter-spacing: 0.5px;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .completed-title {
-      font-size: 38px;
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .victory-title {
+      font-size: 26px;
       font-weight: 900;
-      color: #1f2937;
-      margin-bottom: 25px;
+      color: #ff5500;
+      margin-bottom: 8px;
     }
 
-    .green-check-circle {
-      width: 65px;
-      height: 65px;
-      background-color: #22c55e;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 34px;
-      font-weight: bold;
+    .victory-desc {
+      font-size: 15px;
+      color: #663300;
+      font-weight: 700;
       margin-bottom: 35px;
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
     }
 
-    .next-level-btn-green {
-      width: 100%;
-      background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
-      color: white;
+    /* गोल Next Level बटन */
+    .round-next-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff5500, #ff7700);
       border: none;
-      padding: 18px;
-      border-radius: 35px;
-      font-size: 24px;
+      box-shadow: 0 10px 0 #cc4400, 0 15px 25px rgba(255, 85, 0, 0.4);
+      color: white;
+      font-size: 16px;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 6px 0 #15803d;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      gap: 12px;
-      transition: transform 0.1s ease;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.1s ease;
+      animation: pulseBtn 1.5s infinite alternate;
     }
 
-    .next-level-btn-green:active {
-      transform: translateY(3px);
-      box-shadow: 0 3px 0 #15803d;
+    .round-next-btn:active {
+      transform: translateY(6px);
+      box-shadow: 0 4px 0 #cc4400, 0 8px 15px rgba(255, 85, 0, 0.4);
+    }
+
+    @keyframes pulseBtn {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.06); }
     }
 
     /* 5. बॉटम नेविगेशन बार */
@@ -463,7 +431,7 @@
       const baseLevels = {
         1: [
           { en: "Apple", hi: "सेब", options: ["सेब", "केला", "आम", "अंगूर"] },
-          { en: "Book", hi: "किताब", options: ["बैग", "कलम", "कॉपी", "किताब"] },
+          { en: "Book", hi: "किताब", options: ["किताब", "कलम", "कॉपी", "बैग"] },
           { en: "Cat", hi: "बिल्ली", options: ["बिल्ली", "कुत्ता", "चूहा", "गाय"] },
           { en: "Dog", hi: "कुत्ता", options: ["कुत्ता", "बिल्ली", "घोड़ा", "शेर"] },
           { en: "Water", hi: "पानी", options: ["पानी", "चाय", "दूध", "जूस"] },
@@ -529,7 +497,7 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
-      // साउंड इफेक्ट्स
+      // लाउड साउंड इफेक्ट्स
       function playSound(type) {
         try {
           let ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -583,6 +551,15 @@
         }
       }
 
+      function shuffle(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
       // होम लेवल पाथ (Orange Theme)
       window.loadLevelScreen = function() {
         checkStreak();
@@ -607,7 +584,7 @@
         for (let lvl = 1; lvl <= 500; lvl++) {
           let isUnlocked = (lvl === 1) || completedLevels.includes(lvl - 1);
           let offsetClass = `offset-${lvl % 8}`;
-          let isGift = (lvl % 5 === 0);
+          let isGift = (lvl % 5 === 0); // हर 5वें स्तर पर इनाम बॉक्स
 
           let nodeIcon = '🔒';
           if (isUnlocked) {
@@ -648,7 +625,8 @@
 
       function loadWord() {
         let wordData = levels[currentLevel][currentWord];
-        let progress = (currentWord / levels[currentLevel].length) * 100;
+        let progress = (currentWord / 10) * 100;
+        let shuffledOptions = shuffle(wordData.options);
 
         document.getElementById('app').innerHTML = `
           <div style="display: flex; align-items: center; gap: 15px;">
@@ -659,7 +637,7 @@
           </div>
 
           <div class="quiz-card">
-            <p style="color: #ff6600; font-weight: 800; font-size: 13px;">LEVEL ${currentLevel} • WORD ${currentWord + 1}/${levels[currentLevel].length}</p>
+            <p style="color: #ff6600; font-weight: 800; font-size: 13px;">LEVEL ${currentLevel} • WORD ${currentWord + 1}/10</p>
             <h1 class="word-display">${wordData.en}</h1>
 
             <div class="options-grid" id="options"></div>
@@ -667,7 +645,7 @@
         `;
 
         let optionsDiv = document.getElementById('options');
-        wordData.options.forEach(opt => {
+        shuffledOptions.forEach(opt => {
           let btn = document.createElement('button');
           btn.className = 'option-btn';
           btn.innerText = opt;
@@ -681,19 +659,26 @@
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
         if (selected === correct) {
-          // सही जवाब देने पर GREEN होना चाहिए
           score += 10;
           playSound('correct');
-          btn.classList.add('correct-btn');
+          btn.style.background = '#ffe8d6';
+          btn.style.borderColor = '#ff5500';
+          btn.style.color = '#ff5500';
+          btn.style.boxShadow = '0 4px 0 #ff5500';
           setTimeout(() => { nextQ(); }, 1000);
         } else {
-          // गलत जवाब देने पर RED होना चाहिए + असली सही वाला GREEN होना चाहिए
           playSound('wrong');
-          btn.classList.add('wrong-btn');
+          btn.style.background = '#ffdada';
+          btn.style.borderColor = '#ff3333';
+          btn.style.color = '#ff3333';
+          btn.style.boxShadow = '0 4px 0 #ff3333';
 
           buttons.forEach(b => {
             if (b.innerText === correct) {
-              b.classList.add('correct-btn');
+              b.style.background = '#ffe8d6';
+              b.style.borderColor = '#ff5500';
+              b.style.color = '#ff5500';
+              b.style.boxShadow = '0 4px 0 #ff5500';
             }
           });
           setTimeout(() => { nextQ(); }, 1500);
@@ -709,34 +694,33 @@
           if (!completedLevels.includes(currentLevel)) {
             completedLevels.push(currentLevel);
             if (isGiftLevel) {
-              score += 50; // Bonus Gems
+              score += 50; // हर 5वें लेवल पर बोनस 50 Gems
               localStorage.setItem('score', score);
             }
             localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
           }
           playSound('correct');
-          showLevelSuccessScreen();
+          showLevelSuccessScreen(isGiftLevel);
         } else {
           loadWord();
         }
       }
 
-      // 2nd Image के जैसा Level Complete Screen
-      function showLevelSuccessScreen() {
+      // जीत की स्क्रीन (गोल NEXT LEVEL बटन + रिवॉर्ड)
+      function showLevelSuccessScreen(isGift) {
+        let rewardText = isGift ? "🎉 आपने Gift Box अनलॉक किया! (+50 Bonus Gems)" : "🎉 लेवल सफलतापूर्वक पूरा हुआ!";
+        let icon = isGift ? "🎁" : "🏆";
+
         document.getElementById('app').innerHTML = `
-          <div class="level-complete-card">
-            <div class="trophy-container">
-              <div class="trophy-icon">🏆</div>
-            </div>
-
-            <div class="purple-ribbon">Level ${currentLevel}</div>
-            <div class="completed-title">Completed!</div>
+          <div class="victory-card">
+            <div class="victory-icon">${icon}</div>
+            <div class="victory-title">LEVEL ${currentLevel} COMPLETED!</div>
+            <div class="victory-desc">${rewardText}</div>
             
-            <div class="green-check-circle">✓</div>
-
-            <button class="next-level-btn-green" onclick="goToNextLevel()">
-              <span>Next Level</span>
-              <span style="font-size: 28px;">❯</span>
+            <!-- गोल Next Level बटन -->
+            <button class="round-next-btn" onclick="goToNextLevel()">
+              <span>NEXT</span>
+              <span>LEVEL</span>
             </button>
           </div>
         `;
