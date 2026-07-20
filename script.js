@@ -185,22 +185,34 @@ function showQuestion() {
 
 }
 
-// Check Answer
-function checkAnswer(answer) {
+window.checkAnswer = function(selected, btn) {
+  let correct = levels[currentLevel][currentWord].hi; // Sahi jawab
+  let buttons = document.querySelectorAll('#options button');
+  buttons.forEach(b => b.disabled = true);
 
-    const q = levels[currentLevel][currentQuestion];
+  if(selected === correct) { // Ab seedha text se compare hoga
+    score += 10;
+    playSound('correct');
+    btn.style.background = '#58A700'; // Sahi hua to hara
+    btn.style.borderBottom = '4px solid #4A8E00';
+    setTimeout(() => { nextQ(); }, 1000);
+  } else {
+    playSound('wrong');
+    btn.style.background = 'red'; // Galat hua to lal
+    btn.style.borderBottom = '4px solid #cc0000';
 
-    const buttons = document.querySelectorAll("#options button");
+    // Sahi wala button bhi hara kar do
+    buttons.forEach(b => {
+      if(b.innerText === correct) {
+        b.style.background = '#58A700';
+        b.style.borderBottom = '4px solid #4A8E00';
+      }
+    });
 
-    buttons.forEach(btn => btn.disabled = true);
-
-    if (answer === q.hi) {
-
-        playSound("correct");
-
-        score += 10;
-
-        localStorage.setItem("score", score);
+    setTimeout(() => { nextQ(); }, 1500);
+  }
+  localStorage.setItem('score', score);
+}
 
     } else {
 
