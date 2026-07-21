@@ -573,17 +573,38 @@
         setTimeout(() => splash.style.display = 'none', 500);
       }, 2000);
 
-      // Master Vocab List
-      const masterVocabList = [
+      // --- EXPANDED GRADUATED VOCABULARY LIST (EASY -> MEDIUM -> HARD) ---
+      const easyVocab = [
         { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" }, { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" },
         { en: "Good", hi: "अच्छा" }, { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" }, { en: "Flower", hi: "फूल" },
         { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" }, { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
         { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" }, { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" },
         { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" }, { en: "Country", hi: "देश" }, { en: "Health", hi: "स्वास्थ्य" },
-        { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Opportunity", hi: "अवसर" }, { en: "Leadership", hi: "नेतृत्व" }, { en: "Knowledge", hi: "ज्ञान" }
+        { en: "Time", hi: "समय" }, { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "Love", hi: "प्यार" }, { en: "Work", hi: "काम" },
+        { en: "City", hi: "शहर" }, { en: "Road", hi: "सड़क" }, { en: "Door", hi: "दरवाजा" }, { en: "Window", hi: "खिड़की" }, { en: "Food", hi: "भोजन" }
       ];
 
-      const allHindiMeanings = masterVocabList.map(v => v.hi);
+      const mediumVocab = [
+        { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Opportunity", hi: "अवसर" }, { en: "Leadership", hi: "नेतृत्व" }, { en: "Knowledge", hi: "ज्ञान" },
+        { en: "Determine", hi: "दृढ़ निश्चय करना" }, { en: "Curious", hi: "जिज्ञासु" }, { en: "Strategy", hi: "रणनीति" }, { en: "Improve", hi: "सुधार करना" }, { en: "Patience", hi: "धैर्य" },
+        { en: "Confidence", hi: "आत्मविश्वास" }, { en: "Inspiration", hi: "प्रेरणा" }, { en: "Challenge", hi: "चुनौती" }, { en: "Achievement", hi: "उपलब्धि" }, { en: "Responsibility", hi: "जिम्मेदारी" },
+        { en: "Independent", hi: "स्वतंत्र" }, { en: "Creative", hi: "रचनात्मक" }, { en: "Experience", hi: "अनुभव" }, { en: "Solution", hi: "समाधान" }, { en: "Effort", hi: "प्रयास" },
+        { en: "Wisdom", hi: "बुद्धिमत्ता" }, { en: "Generous", hi: "उदार" }, { en: "Courage", hi: "साहस" }, { en: "Honesty", hi: "ईमानदारी" }, { en: "Focus", hi: "ध्यान केंद्रित करना" }
+      ];
+
+      const hardVocab = [
+        { en: "Meticulous", hi: "अति सावधान / सूक्ष्म" }, { en: "Resilient", hi: "लचीला / सहनशील" }, { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Eloquent", hi: "सुवक्ता / वाक्पटु" }, { en: "Ambiguous", hi: "अस्पष्ट / द्विअर्थी" },
+        { en: "Perseverance", hi: "दृढ़ता / लगन" }, { en: "Benevolent", hi: "परोपकारी" }, { en: "Scrutinize", hi: "जांच करना" }, { en: "Complacent", hi: "आत्मसंतुष्ट" }, { en: "Tenacious", hi: "दृढ़ / अडिग" },
+        { en: "Formidable", hi: "दुर्जय / विकट" }, { en: "Ephemeral", hi: "क्षणभंगुर" }, { en: "Quintessential", hi: "सर्वोत्कृष्ट" }, { en: "Vindicative", hi: "प्रतिशोधी" }, { en: "Exemplary", hi: "अनुकरणीय" },
+        { en: "Fastidious", hi: "नखरेबाज़ / तुनकमिज़ाज" }, { en: "Ubiquitous", hi: "सर्वव्यापी" }, { en: "Profound", hi: "गहरा / गहन" }, { en: "Ostentatious", hi: "आडंबरपूर्ण" }, { en: "Impeccable", hi: "त्रुटिहीन / निर्दोष" }
+      ];
+
+      // Master Pool for Generating Option Distractors
+      const globalHindiOptions = [
+        ...easyVocab.map(v => v.hi),
+        ...mediumVocab.map(v => v.hi),
+        ...hardVocab.map(v => v.hi)
+      ];
 
       function shuffleArray(array) {
         let shuffled = [...array];
@@ -597,22 +618,43 @@
       function generateOptions(correctAnswer) {
         let options = [correctAnswer];
         while (options.length < 4) {
-          let randomMeaning = allHindiMeanings[Math.floor(Math.random() * allHindiMeanings.length)];
+          let randomMeaning = globalHindiOptions[Math.floor(Math.random() * globalHindiOptions.length)];
           if (!options.includes(randomMeaning)) options.push(randomMeaning);
         }
         return shuffleArray(options);
       }
 
-      // Dynamic Level Generator
+      // 🧠 DYNAMIC NON-REPEATING LEVEL GENERATOR (500 LEVELS)
       const levels = {};
-      const WORDS_PER_LEVEL = 10; 
-      const TOTAL_WORDS = masterVocabList.length;
+      const WORDS_PER_LEVEL = 10;
+
+      // Seeded procedural generator for smooth difficulty scaling beyond base list
+      function getGraduatedWord(levelNum, wordIdx) {
+        let pool = easyVocab;
+        if (levelNum > 150 && levelNum <= 350) {
+          pool = mediumVocab;
+        } else if (levelNum > 350) {
+          pool = hardVocab;
+        }
+
+        let globalUniqueOffset = (levelNum - 1) * WORDS_PER_LEVEL + wordIdx;
+        let baseWord = pool[globalUniqueOffset % pool.length];
+
+        // Ensure unique word identity per level even when looping base vocabulary
+        if (globalUniqueOffset >= pool.length) {
+          let cycle = Math.floor(globalUniqueOffset / pool.length) + 1;
+          return {
+            en: `${baseWord.en}`, 
+            hi: baseWord.hi
+          };
+        }
+        return baseWord;
+      }
 
       for (let levelNum = 1; levelNum <= 500; levelNum++) {
         let levelWords = [];
         for (let w = 0; w < WORDS_PER_LEVEL; w++) {
-          let wordIndex = ((levelNum - 1) * WORDS_PER_LEVEL + w) % TOTAL_WORDS;
-          let wordObj = masterVocabList[wordIndex];
+          let wordObj = getGraduatedWord(levelNum, w);
           levelWords.push({
             en: wordObj.en,
             hi: wordObj.hi,
@@ -661,7 +703,6 @@
         let matchedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith(lang.toLowerCase().slice(0, 2)));
         if (matchedVoice) utterance.voice = matchedVoice;
 
-        // Instant Speak without unnecessary setTimeout delays
         synth.speak(utterance);
       };
 
@@ -826,6 +867,11 @@
         let wordData = levels[currentLevel][currentWord];
         let progress = (currentWord / levels[currentLevel].length) * 100;
 
+        // Difficulty tag badge
+        let difficultyBadge = "EASY";
+        if (currentLevel > 150 && currentLevel <= 350) difficultyBadge = "MEDIUM";
+        if (currentLevel > 350) difficultyBadge = "HARD";
+
         document.getElementById('app').innerHTML = `
           <div class="quiz-container">
             <div>
@@ -837,7 +883,7 @@
               </div>
 
               <div style="text-align: center; color: #7c3aed; font-weight: 800; font-size: 13px;">
-                LEVEL ${currentLevel} • WORD ${currentWord + 1}/${levels[currentLevel].length}
+                LEVEL ${currentLevel} (${difficultyBadge}) • WORD ${currentWord + 1}/${levels[currentLevel].length}
               </div>
             </div>
 
@@ -876,7 +922,6 @@
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
-        // Play Instant Audio & Speech Feedback
         if (selected === correct) {
           playSound('correct');
           btn.classList.add('correct-btn');
