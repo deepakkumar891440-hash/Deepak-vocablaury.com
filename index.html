@@ -554,6 +554,21 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
+      // --- GLOBAL AUDIO CONTEXT (SOLVES MOBILES AUTOPLAY RESTRICTION) ---
+      let audioCtx = null;
+      function initAudioContext() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+      
+      // Un-mute AudioContext on first touch/click
+      document.body.addEventListener('touchstart', initAudioContext, { once: true });
+      document.body.addEventListener('click', initAudioContext, { once: true });
+
       // Splash Screen Transition
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
@@ -617,61 +632,105 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
-      // 🔊 Speech Engine
-      window.speakWord = function(text, lang = 'en-US') {
+      // 🔊 FIXED & ROBUST SPEECH ENGINE
+      let synth = window.speechSynthesis;
+      let voices = [];
+
+      function loadVoices() {
         if ('speechSynthesis' in window) {
-          window.speechSynthesis.cancel();
+          voices = synth.getVoices();
+        }
+      }
+      loadVoices();
+      if ('speechSynthesis' in window && synth.onvoiceschanged !== undefined) {
+        synth.onvoiceschanged = loadVoices;
+      }
+
+      window.speakWord = function(text, lang = 'en-US') {
+        if (!('speechSynthesis' in window)) return;
+
+        // Reset any stuck speech queue with short timeout
+        synth.cancel();
+
+        setTimeout(() => {
           let utterance = new SpeechSynthesisUtterance(text);
           utterance.lang = lang;
-          utterance.rate = 0.9;
-          window.speechSynthesis.speak(utterance);
-        }
+          utterance.rate = 0.85; // slightly slower for better clarity
+
+          if (voices.length === 0) voices = synth.getVoices();
+          
+          let preferredVoice = voices.find(v => v.lang.includes(lang.split('-')[0]));
+          if (preferredVoice) {
+            utterance.voice = preferredVoice;
+          }
+
+          synth.speak(utterance);
+        }, 60);
       };
 
-      // 🎵 Enhanced Audio Synthesis
+      // 🎵 FIXED AUDIO SYNTHESIS & SOUND EFFECTS
       function playSound(type) {
         try {
-          let ctx = new (window.AudioContext || window.webkitAudioContext)();
-          
+          initAudioContext();
+          if (!audioCtx) return;
+
+          let now = audioCtx.currentTime;
+
           if (type === 'correct') {
-            let osc = ctx.createOscillator();
-            let gain = ctx.createGain();
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
             osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-            osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.4, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.3);
-          } else if (type === 'wrong') {
-            let osc = ctx.createOscillator();
-            let gain = ctx.createGain();
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523.25, now); // C5
+            osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+            
+            gain.gain.setValueAtTime(0.3, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+            
+            osc.start(now);
+            osc.stop(now + 0.35);
+          } 
+          else if (type === 'wrong') {
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
             osc.connect(gain);
-            gain.connect(ctx.destination);
+            gain.connect(audioCtx.destination);
+            
             osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(180, ctx.currentTime);
-            osc.frequency.setValueAtTime(110, ctx.currentTime + 0.12);
-            gain.gain.setValueAtTime(0.4, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.35);
-          } else if (type === 'victory') {
-            const notes = [523.25, 659.25, 783.99, 1046.50];
+            osc.frequency.setValueAtTime(180, now);
+            osc.frequency.setValueAtTime(110, now + 0.12);
+            
+            gain.gain.setValueAtTime(0.3, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+            
+            osc.start(now);
+            osc.stop(now + 0.35);
+          } 
+          else if (type === 'victory') {
+            // Level Complete Triumph Sound
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
             notes.forEach((freq, idx) => {
-              let osc = ctx.createOscillator();
-              let gain = ctx.createGain();
+              let osc = audioCtx.createOscillator();
+              let gain = audioCtx.createGain();
+              
               osc.connect(gain);
-              gain.connect(ctx.destination);
+              gain.connect(audioCtx.destination);
+              
               osc.type = 'triangle';
-              osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.12);
-              gain.gain.setValueAtTime(0.5, ctx.currentTime + idx * 0.12);
-              gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + idx * 0.12 + 0.25);
-              osc.start(ctx.currentTime + idx * 0.12);
-              osc.stop(ctx.currentTime + idx * 0.12 + 0.25);
+              osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+              
+              gain.gain.setValueAtTime(0.4, now + idx * 0.12);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.3);
+              
+              osc.start(now + idx * 0.12);
+              osc.stop(now + idx * 0.12 + 0.3);
             });
           }
-        } catch (e) {}
+        } catch (e) {
+          console.error("Audio error: ", e);
+        }
       }
 
       function updateStats() {
@@ -756,6 +815,7 @@
       };
 
       window.startLevel = function(level, isUnlocked) {
+        initAudioContext();
         if (!isUnlocked) {
           playSound('wrong');
           alert(`🔒 Level ${level} लॉक है! पिछला लेवल पूरा करें।`);
@@ -791,7 +851,7 @@
             <div class="quiz-card">
               <div class="word-card-box">
                 <h1 class="word-display">${wordData.en}</h1>
-                <button class="speaker-btn" onclick="speakWord('${wordData.en}')">🔊</button>
+                <button class="speaker-btn" onclick="speakWord('${wordData.en}', 'en-US')">🔊</button>
               </div>
 
               <div class="options-grid" id="options"></div>
@@ -803,7 +863,8 @@
           </div>
         `;
 
-        speakWord(wordData.en);
+        // Slight delay for smooth auto-speech when question opens
+        setTimeout(() => speakWord(wordData.en, 'en-US'), 200);
 
         let optionsDiv = document.getElementById('options');
         let randomizedOptions = shuffleArray(wordData.options);
@@ -818,11 +879,11 @@
       }
 
       window.checkAnswer = function(selected, btn, correct) {
+        initAudioContext();
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
-        speakWord(correct, 'hi-IN');
-
+        // Play Sound and speak meaning
         if (selected === correct) {
           playSound('correct');
           btn.classList.add('correct-btn');
@@ -835,10 +896,13 @@
           });
         }
 
+        setTimeout(() => speakWord(correct, 'hi-IN'), 150);
+
         document.getElementById('continue-btn').style.display = 'block';
       };
 
       window.nextQ = function() {
+        initAudioContext();
         currentWord++;
         if (currentWord >= levels[currentLevel].length) {
           let isGiftLevel = (currentLevel % 5 === 0);
@@ -878,6 +942,7 @@
       }
 
       window.goToNextLevel = function() {
+        initAudioContext();
         let nextLvl = currentLevel + 1;
         if (nextLvl <= 500) {
           startLevel(nextLvl, true);
