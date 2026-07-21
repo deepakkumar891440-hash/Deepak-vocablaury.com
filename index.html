@@ -170,7 +170,7 @@
       flex-shrink: 0;
     }
 
-    /* 4. UNIQUE 3D PATH LAYOUT */
+    /* Path Layout */
     .path-container {
       display: flex;
       flex-direction: column;
@@ -307,7 +307,7 @@
     .word-card-box {
       background: #ffffff;
       border-radius: 20px;
-      padding: 16px 14px;
+      padding: 20px 14px;
       margin: 12px 0;
       box-shadow: 0 8px 20px rgba(124, 58, 237, 0.08);
       border: 1px solid #f3e8ff;
@@ -318,7 +318,7 @@
     }
 
     .word-display {
-      font-size: 26px;
+      font-size: 28px;
       color: #2e1065;
       font-weight: 900;
     }
@@ -326,8 +326,8 @@
     .speaker-btn {
       background: #f3e8ff;
       border: none;
-      font-size: 18px;
-      padding: 8px 12px;
+      font-size: 20px;
+      padding: 10px 14px;
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 3px 0 #ddd6fe;
@@ -339,7 +339,7 @@
     .options-grid {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 12px;
     }
 
@@ -347,14 +347,15 @@
       background: #ffffff;
       border: 2px solid #e2e8f0;
       box-shadow: 0 4px 0 #cbd5e1;
-      padding: 14px;
+      padding: 16px;
       border-radius: 16px;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 800;
       color: #334155;
       cursor: pointer;
       text-align: center;
       transition: all 0.1s ease;
+      line-height: 1.4;
     }
 
     .option-btn:active {
@@ -572,49 +573,61 @@
         setTimeout(() => splash.style.display = 'none', 500);
       }, 2000);
 
-      // --- MASSIVE DYNAMIC VOCABULARY ENGINE (5000+ UNIQUE WORDS) ---
-      const baseEasyNouns = ["Apple", "Book", "Cat", "Dog", "Water", "House", "Flower", "Sun", "Moon", "Tree", "Milk", "Friend", "Boy", "Girl", "Mother", "Father", "School", "Money", "Family", "Country", "Time", "Night", "Day", "City", "Road", "Door", "Window", "Food", "Sky", "Earth", "Bird", "Fish", "Fire", "Star", "River", "Mountain", "Car", "Chair", "Table", "Pen", "Paper", "Light", "Shadow", "Music", "Dream", "Rain", "Wind", "Gold", "Silver", "King"];
-      const baseEasyHindi = ["सेब", "किताब", "बिल्ली", "कुत्ता", "पानी", "घर", "फूल", "सूरज", "चांद", "पेड़", "दूध", "दोस्त", "लड़का", "लड़की", "मां", "पिता", "स्कूल", "पैसा", "परिवार", "देश", "समय", "रात", "दिन", "शहर", "सड़क", "दरवाजा", "खिड़की", "भोजन", "आकाश", "पृथ्वी", "पक्षी", "मछली", "आग", "तारा", "नदी", "पहाड़", "गाड़ी", "कुर्सी", "मेज", "कलम", "कागज", "रोशनी", "परछाई", "संगीत", "सपना", "बारिश", "हवा", "सोना", "चांदी", "राजा"];
-
-      const baseMediumWords = ["Ambition", "Develop", "Opportunity", "Leadership", "Knowledge", "Determine", "Curious", "Strategy", "Improve", "Patience", "Confidence", "Inspiration", "Challenge", "Achievement", "Responsibility", "Independent", "Creative", "Experience", "Solution", "Effort", "Wisdom", "Generous", "Courage", "Honesty", "Focus", "Polite", "Anxious", "Discipline", "Success", "Diligence", "Grateful", "Harmony", "Justice", "Liberty", "Motive", "Nurture", "Optimize", "Prudent", "Rational", "Sincere"];
-      const baseMediumHindi = ["महत्वाकांक्षा", "विकसित करना", "अवसर", "नेतृत्व", "ज्ञान", "दृढ़ निश्चय करना", "जिज्ञासु", "रणनीति", "सुधार करना", "धैर्य", "आत्मविश्वास", "प्रेरणा", "चुनौती", "उपलब्धि", "जिम्मेदारी", "स्वतंत्र", "रचनात्मक", "अनुभव", "समाधान", "प्रयास", "बुद्धिमत्ता", "उदार", "साहस", "ईमानदारी", "ध्यान केंद्रित करना", "विनम्र", "चिंतित", "अनुशासन", "सफलता", "परिश्रम", "कृतज्ञ", "सद्भाव", "न्याय", "स्वतंत्रता", "उद्देश्य", "पोषण करना", "इष्टतम बनाना", "विवेकी", "तर्कसंगत", "ईमानदार"];
-
-      const baseHardWords = ["Meticulous", "Resilient", "Pragmatic", "Eloquent", "Ambiguous", "Perseverance", "Benevolent", "Scrutinize", "Complacent", "Tenacious", "Formidable", "Ephemeral", "Quintessential", "Vindicative", "Exemplary", "Fastidious", "Ubiquitous", "Profound", "Ostentatious", "Impeccable", "Audacious", "Magnanimous", "Gregarious", "Plausible", "Superfluous", "Acquiesce", "Brevity", "Candid", "Deleterious", "Equanimity", "Flabbergasted", "Garrulous", "Harangue", "Inscrutable", "Jubilant", "Lethargic", "Nonchalant", "Obfuscate", "Punctilious", "Sycophant"];
-      const baseHardHindi = ["अति सावधान / सूक्ष्म", "लचीला / सहनशील", "व्यावहारिक", "सुवक्ता / वाक्पटु", "अस्पष्ट / द्विअर्थी", "दृढ़ता / लगन", "परोपकारी", "जांच करना", "आत्मसंतुष्ट", "दृढ़ / अडिग", "दुर्जय / विकट", "क्षणभंगुर", "सर्वोत्कृष्ट", "प्रतिशोधी", "अनुकरणीय", "नखरेबाज़ / तुनकमिज़ाज", "सर्वव्यापी", "गहरा / गहन", "आडंबरपूर्ण", "त्रुटिहीन / निर्दोष", "साहसी / दुस्साहसी", "उदारचित्त", "सुमुख / मिलनसार", "विश्वसनीय", "अनावश्यक", "स्वीकार करना", "संक्षिप्तता", "स्पष्टवादी", "हानिकारक", "धैर्य / समभाव", "हक्का-बक्का", "बातूनी", "उग्र भाषण", "रहस्यमय", "उल्लसित", "सुस्त / आलसी", "बेपरवाह", "अस्पष्ट करना", "अति सावधान", "चाटुकार"];
-
-      // Generate 5000 100% Unique Vocabulary Pairs Dynamically
-      const masterVocabList = [];
-      const usedWordSet = new Set();
-
-      function addWord(en, hi) {
-        if (!usedWordSet.has(en)) {
-          usedWordSet.add(en);
-          masterVocabList.push({ en, hi });
-        }
-      }
-
-      // Add base handcrafted words first
-      for (let i = 0; i < baseEasyNouns.length; i++) addWord(baseEasyNouns[i], baseEasyHindi[i]);
-      for (let i = 0; i < baseMediumWords.length; i++) addWord(baseMediumWords[i], baseMediumHindi[i]);
-      for (let i = 0; i < baseHardWords.length; i++) addWord(baseHardWords[i], baseHardHindi[i]);
-
-      // Systematic Prefix & Suffix Expansion Engine to achieve 5,000 distinct terms
-      const prefixes = ["Re", "Un", "Over", "Pre", "Co", "Super", "Micro", "Mega", "Auto", "Multi", "Pro", "Anti", "Inter", "Trans", "Ultra"];
-      const prefixHindi = ["पुनः ", "अ-", "अत्यधिक ", "पूर्व-", "सह-", "महा-", "सूक्ष्म-", "विशाल-", "स्व-", "बहु-", "समर्थक ", "विरोधी ", "अंतर-", "पार-", "अति-"];
-
-      let pIndex = 0;
-      while (masterVocabList.length < 5000) {
-        let baseObj = masterVocabList[pIndex % masterVocabList.length];
-        let pIdx = Math.floor(masterVocabList.length / 50) % prefixes.length;
-        let newEn = `${prefixes[pIdx]}${baseObj.en.toLowerCase()}`;
-        let newHi = `${prefixHindi[pIdx]}${baseObj.hi}`;
+      // --- REAL VOCABULARY DATABASE (100% REAL ENGLISH & ACCURATE HINDI) ---
+      const realVocabDatabase = [
+        // Easy Words
+        { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" }, { en: "Dog", hi: "कुत्ता" },
+        { en: "Water", hi: "पानी" }, { en: "House", hi: "घर" }, { en: "Flower", hi: "फूल" }, { en: "Sun", hi: "सूरज" },
+        { en: "Moon", hi: "चांद" }, { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "मित्र" },
+        { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "माता" }, { en: "Father", hi: "पिता" },
+        { en: "School", hi: "विद्यालय" }, { en: "Money", hi: "धन / रुपया" }, { en: "Family", hi: "परिवार" }, { en: "Country", hi: "देश" },
+        { en: "Time", hi: "समय" }, { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" },
+        { en: "Road", hi: "सड़क" }, { en: "Door", hi: "दरवाजा" }, { en: "Window", hi: "खिड़की" }, { en: "Food", hi: "भोजन" },
+        { en: "Sky", hi: "आकाश" }, { en: "Earth", hi: "पृथ्वी" }, { en: "Bird", hi: "पक्षी" }, { en: "Fish", hi: "मछली" },
+        { en: "Fire", hi: "आग" }, { en: "Star", hi: "तारा" }, { en: "River", hi: "नदी" }, { en: "Mountain", hi: "पहाड़" },
         
-        addWord(newEn, newHi);
-        pIndex++;
-      }
+        // Medium Words
+        { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Opportunity", hi: "अवसर" },
+        { en: "Leadership", hi: "नेतृत्व" }, { en: "Knowledge", hi: "ज्ञान" }, { en: "Determine", hi: "दृढ़ निश्चय करना" },
+        { en: "Curious", hi: "जिज्ञासु" }, { en: "Strategy", hi: "रणनीति" }, { en: "Improve", hi: "सुधार करना" },
+        { en: "Patience", hi: "धैर्य" }, { en: "Confidence", hi: "आत्मविश्वास" }, { en: "Inspiration", hi: "प्रेरणा" },
+        { en: "Challenge", hi: "चुनौती" }, { en: "Achievement", hi: "उपलब्धि" }, { en: "Responsibility", hi: "जिम्मेदारी" },
+        { en: "Independent", hi: "स्वतंत्र" }, { en: "Creative", hi: "रचनात्मक" }, { en: "Experience", hi: "अनुभव" },
+        { en: "Solution", hi: "समाधान" }, { en: "Effort", hi: "प्रयास" }, { en: "Wisdom", hi: "बुद्धिमत्ता" },
+        { en: "Generous", hi: "उदार" }, { en: "Courage", hi: "साहस" }, { en: "Honesty", hi: "ईमानदारी" },
+        { en: "Focus", hi: "ध्यान केंद्रित करना" }, { en: "Polite", hi: "विनम्र" }, { en: "Anxious", hi: "चिंतित" },
+        { en: "Discipline", hi: "अनुशासन" }, { en: "Success", hi: "सफलता" }, { en: "Diligence", hi: "परिश्रम" },
+
+        // Advanced / Competitive Words
+        { en: "Meticulous", hi: "अति सावधान / सूक्ष्म" }, { en: "Resilient", hi: "लचीला / सहनशील" },
+        { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Eloquent", hi: "वाक्पटु / सुवक्ता" },
+        { en: "Ambiguous", hi: "अस्पष्ट / द्विअर्थी" }, { en: "Perseverance", hi: "दृढ़ता / लगन" },
+        { en: "Benevolent", hi: "परोपकारी" }, { en: "Scrutinize", hi: "जांच करना" },
+        { en: "Complacent", hi: "आत्मसंतुष्ट" }, { en: "Tenacious", hi: "दृढ़ / अडिग" },
+        { en: "Formidable", hi: "दुर्जय / विकट" }, { en: "Ephemeral", hi: "क्षणभंगुर" },
+        { en: "Quintessential", hi: "सर्वोत्कृष्ट" }, { en: "Exemplary", hi: "अनुकरणीय" },
+        { en: "Ubiquitous", hi: "सर्वव्यापी" }, { en: "Profound", hi: "गहरा / गहन" },
+        { en: "Audacious", hi: "साहसी / दुस्साहसी" }, { en: "Magnanimous", hi: "उदारचित्त" },
+        { en: "Plausible", hi: "विश्वसनीय" }, { en: "Superfluous", hi: "अनावश्यक" },
+        { en: "Candid", hi: "स्पष्टवादी" }, { en: "Deleterious", hi: "हानिकारक" },
+        { en: "Garrulous", hi: "बातूनी" }, { en: "Jubilant", hi: "उल्लसित" },
+        { en: "Lethargic", hi: "सुस्त / आलसी" }, { en: "Sycophant", hi: "चाटुकार / चापलूस" },
+        { en: "Acquiesce", hi: "स्वीकार करना" }, { en: "Brevity", hi: "संक्षिप्तता" },
+        { en: "Abandon", hi: "छोड़ देना" }, { en: "Abundant", hi: "प्रचुर / अत्यधिक" },
+        { en: "Advocate", hi: "समर्थन करना" }, { en: "Aesthetic", hi: "सौंदर्यशास्त्र" },
+        { en: "Affluent", hi: "धनी / समृद्ध" }, { en: "Aggregate", hi: "कुल / एकत्रित" },
+        { en: "Alleviate", hi: "कम करना / राहत देना" }, { en: "Altruistic", hi: "परोपकारी" },
+        { en: "Amiable", hi: "मिलनसार" }, { en: "Apathy", hi: "उदासीनता" },
+        { en: "Apprehensive", hi: "आशंकित / भयभीत" }, { en: "Articulate", hi: "स्पष्ट बोलना" },
+        { en: "Astute", hi: "चतुर / बुद्धिमान" }, { en: "Authentic", hi: "प्रामाणिक / असली" },
+        { en: "Bolster", hi: "मजबूत करना" }, { en: "Brevity", hi: "संक्षिप्तता" },
+        { en: "Cacophony", hi: "कोलाहल / शोर" }, { en: "Candid", hi: "निष्पक्ष / खरा" },
+        { en: "Coercion", hi: "जबरदस्ती / दबाव" }, { en: "Cogent", hi: "प्रभावशाली" },
+        { en: "Concur", hi: "सहमति होना" }, { en: "Condone", hi: "माफ़ करना" }
+      ];
 
       // Option Distractors Pool
-      const globalHindiOptions = masterVocabList.map(v => v.hi);
+      const allHindiMeanings = realVocabDatabase.map(v => v.hi);
 
       function shuffleArray(array) {
         let shuffled = [...array];
@@ -628,23 +641,29 @@
       function generateOptions(correctAnswer) {
         let options = [correctAnswer];
         while (options.length < 4) {
-          let randomMeaning = globalHindiOptions[Math.floor(Math.random() * globalHindiOptions.length)];
+          let randomMeaning = allHindiMeanings[Math.floor(Math.random() * allHindiMeanings.length)];
           if (!options.includes(randomMeaning)) options.push(randomMeaning);
         }
         return shuffleArray(options);
       }
 
-      // 🧠 STRICT UNIQUE QUESTION ENGINE (ZERO REPETITION GUARANTEE)
+      // Generate Questions per Level
       const levels = {};
-      const WORDS_PER_LEVEL = 10;
+      const WORDS_PER_LEVEL = 5;
 
-      // Build 500 Levels with 100% Non-Repeating Questions
-      let masterIndex = 0;
+      let shuffledMaster = shuffleArray([...realVocabDatabase]);
+      let vocabPointer = 0;
+
       for (let levelNum = 1; levelNum <= 500; levelNum++) {
         let levelWords = [];
         for (let w = 0; w < WORDS_PER_LEVEL; w++) {
-          let wordObj = masterVocabList[masterIndex];
-          masterIndex++;
+          if (vocabPointer >= shuffledMaster.length) {
+            shuffledMaster = shuffleArray([...realVocabDatabase]);
+            vocabPointer = 0;
+          }
+          let wordObj = shuffledMaster[vocabPointer];
+          vocabPointer++;
+
           levelWords.push({
             en: wordObj.en,
             hi: wordObj.hi,
@@ -661,7 +680,7 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
-      // 🔊 ADVANCED MOBILE COMPATIBLE TTS SPEECH ENGINE
+      // 🔊 ADVANCED TTS SPEECH ENGINE
       let synth = window.speechSynthesis;
       let voices = [];
 
@@ -694,7 +713,7 @@
         synth.speak(utterance);
       };
 
-      // 🎵 ZERO-LATENCY INSTANT SOUND SYNTHESIZER
+      // 🎵 SOUND SYNTHESIZER
       function playSound(type) {
         try {
           initAudioContext();
@@ -754,7 +773,7 @@
             });
           }
         } catch (e) {
-          console.error("Audio trigger error: ", e);
+          console.error("Audio error: ", e);
         }
       }
 
@@ -855,10 +874,6 @@
         let wordData = levels[currentLevel][currentWord];
         let progress = (currentWord / levels[currentLevel].length) * 100;
 
-        let difficultyBadge = "EASY";
-        if (currentLevel > 150 && currentLevel <= 350) difficultyBadge = "MEDIUM";
-        if (currentLevel > 350) difficultyBadge = "HARD";
-
         document.getElementById('app').innerHTML = `
           <div class="quiz-container">
             <div>
@@ -870,7 +885,7 @@
               </div>
 
               <div style="text-align: center; color: #7c3aed; font-weight: 800; font-size: 13px;">
-                LEVEL ${currentLevel} (${difficultyBadge}) • WORD ${currentWord + 1}/${levels[currentLevel].length}
+                LEVEL ${currentLevel} • WORD ${currentWord + 1}/${levels[currentLevel].length}
               </div>
             </div>
 
@@ -892,9 +907,7 @@
         speakWord(wordData.en, 'en-US');
 
         let optionsDiv = document.getElementById('options');
-        let randomizedOptions = shuffleArray(wordData.options);
-
-        randomizedOptions.forEach(opt => {
+        wordData.options.forEach(opt => {
           let btn = document.createElement('button');
           btn.className = 'option-btn';
           btn.innerText = opt;
@@ -920,7 +933,6 @@
           });
         }
 
-        speakWord(correct, 'hi-IN');
         document.getElementById('continue-btn').style.display = 'block';
       };
 
@@ -929,7 +941,7 @@
         currentWord++;
         if (currentWord >= levels[currentLevel].length) {
           let isGiftLevel = (currentLevel % 5 === 0);
-          let earnedGems = 5; 
+          let earnedGems = 10; 
           if (isGiftLevel) earnedGems += 50; 
 
           if (!completedLevels.includes(currentLevel)) {
