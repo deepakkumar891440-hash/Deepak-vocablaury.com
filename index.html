@@ -459,67 +459,98 @@
         }, 600);
       }, 2500);
 
-      // शब्दावली डेटाबेस
-      const baseLevels = {
-        1: [
-          { en: "Apple", hi: "सेब", options: ["सेब", "केला", "आम", "अंगूर"] },
-          { en: "Book", hi: "किताब", options: ["बैग", "कलम", "कॉपी", "किताब"] },
-          { en: "Cat", hi: "बिल्ली", options: ["बिल्ली", "कुत्ता", "चूहा", "गाय"] },
-          { en: "Dog", hi: "कुत्ता", options: ["कुत्ता", "बिल्ली", "घोड़ा", "शेर"] },
-          { en: "Water", hi: "पानी", options: ["पानी", "चाय", "दूध", "जूस"] },
-          { en: "Good", hi: "अच्छा", options: ["अच्छा", "बुरा", "सुंदर", "गंदा"] },
-          { en: "Happy", hi: "खुश", options: ["खुश", "उदास", "गुस्सा", "डरा"] },
-          { en: "House", hi: "घर", options: ["घर", "दुकान", "स्कूल", "अस्पताल"] },
-          { en: "Eat", hi: "खाना", options: ["खाना", "पीना", "सोना", "खेलना"] },
-          { en: "Flower", hi: "फूल", options: ["फूल", "पत्ता", "पेड़", "फल"] }
-        ],
-        2: [
-          { en: "Beautiful", hi: "सुंदर", options: ["सुंदर", "बदसूरत", "छोटा", "बड़ा"] },
-          { en: "Friend", hi: "दोस्त", options: ["दोस्त", "दुश्मन", "शिक्षक", "डॉक्टर"] },
-          { en: "Money", hi: "पैसा", options: ["पैसा", "समय", "काम", "नाम"] },
-          { en: "Family", hi: "परिवार", options: ["परिवार", "समाज", "देश", "दुनिया"] },
-          { en: "Country", hi: "देश", options: ["देश", "शहर", "गांव", "राज्य"] },
-          { en: "Health", hi: "स्वास्थ्य", options: ["स्वास्थ्य", "बीमारी", "दवा", "डॉक्टर"] },
-          { en: "Education", hi: "शिक्षा", options: ["शिक्षा", "खेल", "नौकरी", "व्यापार"] },
-          { en: "Travel", hi: "यात्रा", options: ["यात्रा", "घर", "खाना", "सोना"] },
-          { en: "Success", hi: "सफलता", options: ["सफलता", "असफलता", "मेहनत", "भाग्य"] },
-          { en: "Problem", hi: "समस्या", options: ["समस्या", "समाधान", "सवाल", "जवाब"] }
-        ],
-        3: [
-          { en: "Ambition", hi: "महत्वाकांक्षा", options: ["महत्वाकांक्षा", "आलस्य", "डर", "खुशी"] },
-          { en: "Develop", hi: "विकसित करना", options: ["विकसित करना", "खराब करना", "बनाना", "तोड़ना"] },
-          { en: "Environment", hi: "पर्यावरण", options: ["पर्यावरण", "प्रदूषण", "जंगल", "नदी"] },
-          { en: "Technology", hi: "प्रौद्योगिकी", options: ["प्रौद्योगिकी", "विज्ञान", "कला", "इतिहास"] },
-          { en: "Opportunity", hi: "अवसर", options: ["अवसर", "समस्या", "चुनौती", "हार"] },
-          { en: "Responsibility", hi: "जिम्मेदारी", options: ["जिम्मेदारी", "आजादी", "अधिकार", "कानून"] },
-          { en: "Globalization", hi: "वैश्वीकरण", options: ["वैश्वीकरण", "स्थानीयकरण", "विकास", "पतन"] },
-          { en: "Innovation", hi: "नवाचार", options: ["नवाचार", "नकल", "परंपरा", "रिवाज"] },
-          { en: "Sustainable", hi: "टिकाऊ", options: ["टिकाऊ", "नाजुक", "मजबूत", "कमजोर"] },
-          { en: "Leadership", hi: "नेतृत्व", options: ["नेतृत्व", "अनुसरण", "टीम", "कंपनी"] }
-        ]
-      };
-
-      // 500 लेवल्स जनरेट करना
-      const levels = {};
-      const vocabularyPool = [
-        { en: "Sun", hi: "सूरज", options: ["सूरज", "चांद", "तारा", "आकाश"] },
-        { en: "Moon", hi: "चांद", options: ["चांद", "सूरज", "तारा", "हवा"] },
-        { en: "Time", hi: "समय", options: ["समय", "काम", "दिन", "रात"] },
-        { en: "City", hi: "शहर", options: ["शहर", "गांव", "देश", "राज्य"] },
-        { en: "Love", hi: "प्यार", options: ["प्यार", "नफरत", "गुस्सा", "डर"] },
-        { en: "Peace", hi: "शांति", options: ["शांति", "शोर", "युद्ध", "दुख"] },
-        { en: "Freedom", hi: "आजादी", options: ["आजादी", "गुलामी", "कानून", "नियम"] },
-        { en: "Wisdom", hi: "बुद्धिमत्ता", options: ["बुद्धिमत्ता", "मूर्खता", "ज्ञान", "सोच"] },
-        { en: "Courage", hi: "साहस", options: ["साहस", "डर", "कायरता", "शक्ति"] },
-        { en: "Truth", hi: "सत्य", options: ["सत्य", "झूठ", "पाप", "पुण्य"] }
+      // ===============================================
+      // 📚 EASY TO HARD शब्दावली पूल (Vocab Pools)
+      // ===============================================
+      
+      // 1. Easy Vocabulary (लेवल 1 - 100 के लिए)
+      const easyVocab = [
+        { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" },
+        { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" }, { en: "Good", hi: "अच्छा" },
+        { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" },
+        { en: "Flower", hi: "फूल" }, { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" },
+        { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
+        { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" },
+        { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" }, { en: "Pen", hi: "कलम" },
+        { en: "Chair", hi: "कुर्सी" }, { en: "Table", hi: "मेज" }, { en: "Bird", hi: "पक्षी" },
+        { en: "Fish", hi: "मछली" }, { en: "Car", hi: "गाड़ी" }, { en: "Road", hi: "सड़क" },
+        { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" }
       ];
 
-      for (let i = 1; i <= 500; i++) {
-        if (baseLevels[i]) {
-          levels[i] = baseLevels[i];
-        } else {
-          levels[i] = vocabularyPool;
+      // 2. Medium Vocabulary (लेवल 101 - 250 के लिए)
+      const mediumVocab = [
+        { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" },
+        { en: "Country", hi: "देश" }, { en: "Health", hi: "स्वास्थ्य" }, { en: "Education", hi: "शिक्षा" },
+        { en: "Travel", hi: "यात्रा" }, { en: "Success", hi: "सफलता" }, { en: "Problem", hi: "समस्या" },
+        { en: "Freedom", hi: "आजादी" }, { en: "Wisdom", hi: "बुद्धिमत्ता" }, { en: "Courage", hi: "साहस" },
+        { en: "Truth", hi: "सत्य" }, { en: "Knowledge", hi: "ज्ञान" }, { en: "Honest", hi: "ईमानदार" },
+        { en: "Peace", hi: "शांति" }, { en: "Future", hi: "भविष्य" }, { en: "History", hi: "इतिहास" },
+        { en: "Village", hi: "गांव" }, { en: "Danger", hi: "खतरा" }, { en: "Journey", hi: "यात्रा" },
+        { en: "Protect", hi: "रक्षा करना" }, { en: "Believe", hi: "विश्वास करना" }, { en: "Patience", hi: "धैर्य" }
+      ];
+
+      // 3. Hard Vocabulary (लेवल 251 - 400 के लिए)
+      const hardVocab = [
+        { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Environment", hi: "पर्यावरण" },
+        { en: "Technology", hi: "प्रौद्योगिकी" }, { en: "Opportunity", hi: "अवसर" }, { en: "Responsibility", hi: "जिम्मेदारी" },
+        { en: "Globalization", hi: "वैश्वीकरण" }, { en: "Innovation", hi: "नवाचार" }, { en: "Sustainable", hi: "टिकाऊ" },
+        { en: "Leadership", hi: "नेतृत्व" }, { en: "Perseverance", hi: "दृढ़ता" }, { en: "Inspiration", hi: "प्रेरणा" },
+        { en: "Consequence", hi: "परिणाम" }, { en: "Elegance", hi: "लालित्य" }, { en: "Magnificent", hi: "शानदार" },
+        { en: "Reluctant", hi: "अनिच्छुक" }, { en: "Curiosity", hi: "जिज्ञासा" }, { en: "Affection", hi: "स्नेह" }
+      ];
+
+      // 4. Advanced / Competitive Vocabulary (लेवल 401 - 500 के लिए)
+      const advancedVocab = [
+        { en: "Meticulous", hi: "अति सावधान" }, { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Resilient", hi: "लचीला/दृढ़" },
+        { en: "Benevolent", hi: "परोपकारी" }, { en: "Ephemeral", hi: "क्षणिक" }, { en: "Ubiquitous", hi: "सर्वव्यापी" },
+        { en: "Ambiguity", hi: "अस्पष्टता" }, { en: "Diligent", hi: "मेहनती" }, { en: "Empathy", hi: "सहानुभूति" },
+        { en: "Eloquence", hi: "वाक्पटुता" }, { en: "Quintessential", hi: "सर्वोत्कृष्ट" }, { en: "Superfluous", hi: "अनावश्यक" },
+        { en: "Vindicator", hi: "समर्थक" }, { en: "Acrophobia", hi: "ऊंचाई का डर" }, { en: "Lethargic", hi: "सुस्त" }
+      ];
+
+      // सभी हिंदी अर्थों की एक लिस्ट - ऑप्शन बनाने के लिए
+      const allHindiMeanings = [
+        ...easyVocab, ...mediumVocab, ...hardVocab, ...advancedVocab
+      ].map(v => v.hi);
+
+      // रैंडम 3 गलत विकल्प (Distractors) जनरेट करने का फंक्शन
+      function generateOptions(correctAnswer) {
+        let options = [correctAnswer];
+        while (options.length < 4) {
+          let randomMeaning = allHindiMeanings[Math.floor(Math.random() * allHindiMeanings.length)];
+          if (!options.includes(randomMeaning)) {
+            options.push(randomMeaning);
+          }
         }
+        return shuffleArray(options);
+      }
+
+      // 500 लेवल्स जनरेट करना (Easy -> Hard Dynamic Generator)
+      const levels = {};
+
+      for (let levelNum = 1; levelNum <= 500; levelNum++) {
+        let pool = easyVocab;
+        
+        // लेवल्स की कठिनाई तय करना
+        if (levelNum > 400) {
+          pool = advancedVocab;
+        } else if (levelNum > 250) {
+          pool = hardVocab;
+        } else if (levelNum > 100) {
+          pool = mediumVocab;
+        }
+
+        let levelWords = [];
+        // हर लेवल में 10 शब्द चुनना
+        for (let w = 0; w < 10; w++) {
+          let wordObj = pool[(levelNum * 3 + w) % pool.length];
+          levelWords.push({
+            en: wordObj.en,
+            hi: wordObj.hi,
+            options: generateOptions(wordObj.hi)
+          });
+        }
+        levels[levelNum] = levelWords;
       }
 
       let currentLevel = 1;
@@ -532,10 +563,10 @@
       // 🔊 शब्द बोलने के लिए Text-to-Speech (TTS) फंक्शन
       function speakWord(text) {
         if ('speechSynthesis' in window) {
-          window.speechSynthesis.cancel(); // अगर पहले से कुछ बोल रहा हो तो स्टॉप करें
+          window.speechSynthesis.cancel();
           let utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = 'hi-IN'; // हिंदी भाषा
-          utterance.rate = 0.9;     // बोलने की स्पीड
+          utterance.lang = 'hi-IN';
+          utterance.rate = 0.9;
           utterance.pitch = 1.0;
           window.speechSynthesis.speak(utterance);
         }
@@ -706,7 +737,7 @@
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
-        // **🔊 यहाँ पर सही उत्तर बोलकर बताया जा रहा है**
+        // **🔊 सही उत्तर बोलकर बताया जा रहा है**
         speakWord(correct);
 
         if (selected === correct) {
