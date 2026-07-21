@@ -464,19 +464,42 @@
       // ===============================================
       
       // 1. Easy Vocabulary (लेवल 1 - 100 के लिए)
-      const easyVocab = [
-        { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" },
-        { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" }, { en: "Good", hi: "अच्छा" },
-        { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" },
-        { en: "Flower", hi: "फूल" }, { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" },
-        { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
-        { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" },
-        { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" }, { en: "Pen", hi: "कलम" },
-        { en: "Chair", hi: "कुर्सी" }, { en: "Table", hi: "मेज" }, { en: "Bird", hi: "पक्षी" },
-        { en: "Fish", hi: "मछली" }, { en: "Car", hi: "गाड़ी" }, { en: "Road", hi: "सड़क" },
-        { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" }
-      ];
-
+      const easyVocabLevel51To100 = [
+  { en: "Village", hi: "गांव" }, { en: "River", hi: "नदी" }, { en: "Mountain", hi: "पहाड़" },
+  { en: "Sky", hi: "आसमान" }, { en: "Rain", hi: "बारिश" }, { en: "Wind", hi: "हवा" },
+  { en: "Fire", hi: "आग" }, { en: "Earth", hi: "पृथ्वी" }, { en: "Star", hi: "तारा" },
+  { en: "Cloud", hi: "बादल" }, { en: "Paper", hi: "कागज़" }, { en: "Pencil", hi: "पेंसिल" },
+  { en: "Bag", hi: "बस्ता" }, { en: "Shoes", hi: "जूते" }, { en: "Clothes", hi: "कपड़े" },
+  { en: "Food", hi: "भोजन" }, { en: "Fruit", hi: "फल" }, { en: "Vegetable", hi: "सब्जी" },
+  { en: "Bread", hi: "रोटी" }, { en: "Tea", hi: "चाय" }, { en: "Bed", hi: "बिस्तर" },
+  { en: "Room", hi: "कमरा" }, { en: "Key", hi: "चाबी" }, { en: "Lock", hi: "ताला" },
+  { en: "Money", hi: "पैसा" }, { en: "Shop", hi: "दुकान" }, { en: "Market", hi: "बाजार" },
+  { en: "Work", hi: "काम" }, { en: "Game", hi: "खेल" }, { en: "Song", hi: "गाना" },
+  { en: "Music", hi: "संगीत" }, { en: "Story", hi: "कहानी" }, { en: "Truth", hi: "सच" },
+  { en: "Lie", hi: "झूठ" }, { en: "Love", hi: "प्यार" }, { en: "Peace", hi: "शांति" },
+  { en: "Joy", hi: "खुशी" }, { en: "Fear", hi: "डर" }, { en: "Dream", hi: "सपना" },
+  { en: "Health", hi: "स्वास्थ्य" }, { en: "Power", hi: "शक्ति" }, { en: "Knowledge", hi: "ज्ञान" },
+  { en: "Question", hi: "सवाल" }, { en: "Answer", hi: "जवाब" }, { en: "Problem", hi: "समस्या" },
+  { en: "Solution", hi: "समाधान" }, { en: "Family", hi: "परिवार" }, { en: "Life", hi: "जीवन" },
+  { en: "World", hi: "दुनिया" }, { en: "Future", hi: "भविष्य" }, 
+  { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" },
+  { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" }, { en: "Good", hi: "अच्छा" },
+  { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" },
+  { en: "Flower", hi: "फूल" }, { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" },
+  { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
+  { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" },
+  { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" }, { en: "Pen", hi: "कलम" },
+  { en: "Chair", hi: "कुर्सी" }, { en: "Table", hi: "मेज" }, { en: "Bird", hi: "पक्षी" },
+  { en: "Fish", hi: "मछली" }, { en: "Car", hi: "गाड़ी" }, { en: "Road", hi: "सड़क" },
+  { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" },
+  { en: "Big", hi: "बड़ा" }, { en: "Small", hi: "छोटा" }, { en: "Red", hi: "लाल" },
+  { en: "Blue", hi: "नीला" }, { en: "Green", hi: "हरा" }, { en: "Cold", hi: "ठंडा" },
+  { en: "Hot", hi: "गरम" }, { en: "Fast", hi: "तेज़" }, { en: "Slow", hi: "धीमा" },
+  { en: "New", hi: "नया" }, { en: "Old", hi: "पुराना" }, { en: "Clean", hi: "साफ़" },
+  { en: "Dirty", hi: "गंदा" }, { en: "Sweet", hi: "मीठा" }, { en: "Sour", hi: "खट्टा" },
+  { en: "Light", hi: "हल्का" }, { en: "Heavy", hi: "भारी" }, { en: "Door", hi: "दरवाजा" },
+  { en: "Window", hi: "खिड़की" }, { en: "Time", hi: "समय" }
+];
       // 2. Medium Vocabulary (लेवल 101 - 250 के लिए)
       const mediumVocab = [
         { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" },
