@@ -185,7 +185,6 @@
       transition: transform 0.1s ease;
     }
 
-    /* Unlocked Purple Node */
     .path-node.unlocked {
       background: #7c3aed;
       box-shadow: 0 8px 0 #5b21b6;
@@ -197,7 +196,6 @@
       box-shadow: 0 4px 0 #5b21b6;
     }
 
-    /* 5th Level Reward Gift Node */
     .path-node.gift-node {
       background: linear-gradient(135deg, #a855f7, #c084fc) !important;
       box-shadow: 0 8px 0 #7e22ce !important;
@@ -209,7 +207,6 @@
       100% { transform: scale(1.1); }
     }
 
-    /* Locked Node */
     .path-node.locked {
       background: #e2e2e2;
       box-shadow: 0 8px 0 #b0b0b0;
@@ -272,7 +269,6 @@
       box-shadow: 0 2px 0 #e9d5ff;
     }
 
-    /* Correct/Wrong State Styling */
     .option-btn.correct-btn {
       background: #4CAF50 !important;
       border-color: #388E3C !important;
@@ -450,7 +446,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-      // 2.5 सेकंड बाद पांडा स्क्रीन हटेगी
+      // स्प्लैश स्क्रीन टाइमर
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
         splash.style.opacity = '0';
@@ -460,10 +456,10 @@
       }, 2500);
 
       // ===============================================
-      // 📚 EASY TO HARD शब्दावली पूल (UNIQUE WORDS - NO REPEAT)
+      // 📚 EASY TO HARD VOCABULARY POOL (STRICT UNIQUE WORDS)
       // ===============================================
       
-      // 1. Easy Vocabulary (100 Distinct Words)
+      // 1. Easy Vocabulary (100 Unique Words - Level 1 to 10)
       const easyVocab = [
         { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" }, { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" },
         { en: "Good", hi: "अच्छा" }, { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" }, { en: "Flower", hi: "फूल" },
@@ -487,7 +483,7 @@
         { en: "Bag", hi: "थैला" }, { en: "Shoes", hi: "जूते" }, { en: "Clothes", hi: "कपड़े" }, { en: "Room", hi: "कमरा" }, { en: "Bed", hi: "बिस्तर" }
       ];
 
-      // 2. Medium Vocabulary (150 Distinct Words)
+      // 2. Medium Vocabulary (150 Unique Words - Level 11 to 25)
       const mediumVocab = [
         { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" }, { en: "Country", hi: "देश" }, { en: "Health", hi: "स्वास्थ्य" },
         { en: "Education", hi: "शिक्षा" }, { en: "Travel", hi: "यात्रा" }, { en: "Success", hi: "सफलता" }, { en: "Problem", hi: "समस्या" }, { en: "Freedom", hi: "आजादी" },
@@ -500,10 +496,28 @@
         { en: "Power", hi: "शक्ति" }, { en: "Reason", hi: "कारण" }, { en: "Safety", hi: "सुरक्षा" }, { en: "Society", hi: "समाज" }, { en: "Talent", hi: "प्रतिभा" },
         { en: "Accept", hi: "स्वीकार करना" }, { en: "Advise", hi: "सलाह देना" }, { en: "Agree", hi: "सहमत होना" }, { en: "Allow", hi: "अनुमति देना" }, { en: "Answer", hi: "उत्तर देना" },
         { en: "Arrive", hi: "पहुंचना" }, { en: "Attack", hi: "हमला करना" }, { en: "Become", hi: "बनना" }, { en: "Begin", hi: "शुरू करना" }, { en: "Borrow", hi: "उधार लेना" },
-        { en: "Change", hi: "बदलना" }, { en: "Choose", hi: "चुनना" }, { en: "Create", hi: "बनाना" }, { en: "Decide", hi: "निर्णय लेना" }, { en: "Defeat", hi: "हराना" }, { en: "Depend", hi: "निर्भर होना" }, { en: "Describe", hi: "वर्णन करना" }, { en: "Destroy", hi: "नष्ट करना" }, { en: "Discover", hi: "खोज करना" }, { en: "Discuss", hi: "चर्चा करना" }, { en: "Expect", hi: "आशा करना" }, { en: "Explain", hi: "समझाना" }, { en: "Forget", hi: "भूलना" }, { en: "Improve", hi: "सुधार करना" }, { en: "Increase", hi: "बढ़ाना" }, { en: "Inform", hi: "सूचित करना" }, { en: "Invent", hi: "आविष्कार करना" }, { en: "Invite", hi: "आमंत्रित करना" }, { en: "Manage", hi: "प्रबंध करना" }, { en: "Measure", hi: "मापना" }, { en: "Notice", hi: "ध्यान देना" }, { en: "Offer", hi: "प्रस्ताव देना" }, { en: "Perform", hi: "प्रदर्शन करना" }, { en: "Promise", hi: "वादा करना" }, { en: "Refuse", hi: "मना करना" }, { en: "Remember", hi: "याद रखना" }, { en: "Search", hi: "खोजना" }, { en: "Suggest", hi: "सुझाव देना" }, { en: "Support", hi: "समर्थन करना" }, { en: "Understand", hi: "समझना" }, { en: "Warning", hi: "चेतावनी" }, { en: "Worship", hi: "पूजा" }, { en: "Curious", hi: "उत्सुक" }, { en: "Generous", hi: "उदार" }, { en: "Innocent", hi: "मासूम" }, { en: "Jealous", hi: "ईर्ष्यालु" }, { en: "Lazy", hi: "आलसी" }, { en: "Loyal", hi: "वफादार" }, { en: "Naughty", hi: "नटखट" }, { en: "Nervous", hi: "घबराया हुआ" }, { en: "Proud", hi: "गर्व" }, { en: "Selfish", hi: "स्वार्थी" }, { en: "Stubborn", hi: "जिद्दी" }, { en: "Useful", hi: "उपयोगी" }, { en: "Valuable", hi: "कीमती" }, { en: "Wealthy", hi: "धनी" }, { en: "Wicked", hi: "दुष्ट" }, { en: "Accident", hi: "दुर्घटना" }, { en: "Agreement", hi: "समझौता" }, { en: "Amount", hi: "राशि" }, { en: "Attention", hi: "ध्यान" }, { en: "Behavior", hi: "व्यवहार" }, { en: "Business", hi: "व्यापार" }, { en: "Century", hi: "सदी" }, { en: "Choice", hi: "पसंद" }, { en: "Collection", hi: "संग्रह" }, { en: "Condition", hi: "स्थिति" }, { en: "Connection", hi: "संबंध" }, { en: "Culture", hi: "संस्कृति" }, { en: "Decision", hi: "फैसला" }, { en: "Distance", hi: "दूरी" }, { en: "Effort", hi: "प्रयास" }, { en: "Example", hi: "उदाहरण" }, { en: "Experience", hi: "अनुभव" }, { en: "Expression", hi: "अभिव्यक्ति" }, { en: "Failure", hi: "विफलता" }, { en: "Feeling", hi: "भावना" }, { en: "Growth", hi: "विकास" }, { en: "Habit", hi: "आदत" }, { en: "Health", hi: "सेहत" }, { en: "Honesty", hi: "ईमानदारी" }, { en: "Impression", hi: "प्रभाव" }, { en: "Industry", hi: "उद्योग" }, { en: "Intention", hi: "इरादा" }, { en: "Language", hi: "भाषा" }, { en: "Leader", hi: "नेता" }, { en: "Location", hi: "स्थान" }, { en: "Message", hi: "संदेश" }, { en: "Method", hi: "तरीका" }, { en: "Nation", hi: "राष्ट्र" }, { en: "Opinion", hi: "राय" }, { en: "Passenger", hi: "यात्री" }, { en: "Pleasure", hi: "आनंद" }, { en: "Position", hi: "स्थिति" }, { en: "Practice", hi: "अभ्यास" }, { en: "Quality", hi: "गुणवत्ता" }, { en: "Quantity", hi: "मात्रा" }, { en: "Relation", hi: "रिश्ता" }, { en: "Result", hi: "परिणाम" }, { en: "Reward", hi: "पुरस्कार" }, { en: "Service", hi: "सेवा" }, { en: "Solution", hi: "समाधान" }, { en: "Stranger", hi: "अजनबी" }, { en: "System", hi: "प्रणाली" }, { en: "Thought", hi: "विचार" }
+        { en: "Change", hi: "बदलना" }, { en: "Choose", hi: "चुनना" }, { en: "Create", hi: "बनाना" }, { en: "Decide", hi: "निर्णय लेना" }, { en: "Defeat", hi: "हराना" },
+        { en: "Depend", hi: "निर्भर होना" }, { en: "Describe", hi: "वर्णन करना" }, { en: "Destroy", hi: "नष्ट करना" }, { en: "Discover", hi: "खोज करना" }, { en: "Discuss", hi: "चर्चा करना" },
+        { en: "Expect", hi: "आशा करना" }, { en: "Explain", hi: "समझाना" }, { en: "Forget", hi: "भूलना" }, { en: "Improve", hi: "सुधार करना" }, { en: "Increase", hi: "बढ़ाना" },
+        { en: "Inform", hi: "सूचित करना" }, { en: "Invent", hi: "आविष्कार करना" }, { en: "Invite", hi: "आमंत्रित करना" }, { en: "Manage", hi: "प्रबंध करना" }, { en: "Measure", hi: "मापना" },
+        { en: "Notice", hi: "ध्यान देना" }, { en: "Offer", hi: "प्रस्ताव देना" }, { en: "Perform", hi: "प्रदर्शन करना" }, { en: "Promise", hi: "वादा करना" }, { en: "Refuse", hi: "मना करना" },
+        { en: "Remember", hi: "याद रखना" }, { en: "Search", hi: "खोजना" }, { en: "Suggest", hi: "सुझाव देना" }, { en: "Support", hi: "समर्थन करना" }, { en: "Understand", hi: "समझना" },
+        { en: "Warning", hi: "चेतावनी" }, { en: "Worship", hi: "पूजा" }, { en: "Curious", hi: "उत्सुक" }, { en: "Generous", hi: "उदार" }, { en: "Innocent", hi: "मासूम" },
+        { en: "Jealous", hi: "ईर्ष्यालु" }, { en: "Lazy", hi: "आलसी" }, { en: "Loyal", hi: "वफादार" }, { en: "Naughty", hi: "नटखट" }, { en: "Nervous", hi: "घबराया हुआ" },
+        { en: "Proud", hi: "गर्व" }, { en: "Selfish", hi: "स्वार्थी" }, { en: "Stubborn", hi: "जिद्दी" }, { en: "Useful", hi: "उपयोगी" }, { en: "Valuable", hi: "कीमती" },
+        { en: "Wealthy", hi: "धनी" }, { en: "Wicked", hi: "दुष्ट" }, { en: "Accident", hi: "दुर्घटना" }, { en: "Agreement", hi: "समझौता" }, { en: "Amount", hi: "राशि" },
+        { en: "Attention", hi: "ध्यान" }, { en: "Behavior", hi: "व्यवहार" }, { en: "Business", hi: "व्यापार" }, { en: "Century", hi: "सदी" }, { en: "Choice", hi: "पसंद" },
+        { en: "Collection", hi: "संग्रह" }, { en: "Condition", hi: "स्थिति" }, { en: "Connection", hi: "संबंध" }, { en: "Culture", hi: "संस्कृति" }, { en: "Decision", hi: "फैसला" },
+        { en: "Distance", hi: "दूरी" }, { en: "Effort", hi: "प्रयास" }, { en: "Example", hi: "उदाहरण" }, { en: "Experience", hi: "अनुभव" }, { en: "Expression", hi: "अभिव्यक्ति" },
+        { en: "Failure", hi: "विफलता" }, { en: "Feeling", hi: "भावना" }, { en: "Growth", hi: "विकास" }, { en: "Habit", hi: "आदत" }, { en: "Honesty", hi: "ईमानदारी" },
+        { en: "Impression", hi: "प्रभाव" }, { en: "Industry", hi: "उद्योग" }, { en: "Intention", hi: "इरादा" }, { en: "Language", hi: "भाषा" }, { en: "Leader", hi: "नेता" },
+        { en: "Location", hi: "स्थान" }, { en: "Message", hi: "संदेश" }, { en: "Method", hi: "तरीका" }, { en: "Nation", hi: "राष्ट्र" }, { en: "Opinion", hi: "राय" },
+        { en: "Passenger", hi: "यात्री" }, { en: "Pleasure", hi: "आनंद" }, { en: "Position", hi: "स्थिति" }, { en: "Practice", hi: "अभ्यास" }, { en: "Quality", hi: "गुणवत्ता" },
+        { en: "Quantity", hi: "मात्रा" }, { en: "Relation", hi: "रिश्ता" }, { en: "Result", hi: "परिणाम" }, { en: "Reward", hi: "पुरस्कार" }, { en: "Service", hi: "सेवा" },
+        { en: "Solution", hi: "समाधान" }, { en: "Stranger", hi: "अजनबी" }, { en: "System", hi: "प्रणाली" }, { en: "Thought", hi: "विचार" }
       ];
 
-      // 3. Hard Vocabulary (150 Distinct Words)
+      // 3. Hard Vocabulary (120 Unique Words - Level 26 to 37)
       const hardVocab = [
         { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Environment", hi: "पर्यावरण" }, { en: "Technology", hi: "प्रौद्योगिकी" }, { en: "Opportunity", hi: "अवसर" },
         { en: "Responsibility", hi: "जिम्मेदारी" }, { en: "Globalization", hi: "वैश्वीकरण" }, { en: "Innovation", hi: "नवाचार" }, { en: "Sustainable", hi: "टिकाऊ" }, { en: "Leadership", hi: "नेतृत्व" },
@@ -531,7 +545,7 @@
         { en: "Substitute", hi: "विकल्प" }, { en: "Sufficient", hi: "पर्याप्त" }, { en: "Transformation", hi: "रूपांतरण" }, { en: "Ultimate", hi: "अंतिम" }, { en: "Unpredictable", hi: "अप्रत्याशित" }
       ];
 
-      // 4. Advanced / Competitive Vocabulary (100 Distinct Words)
+      // 4. Advanced / Competitive Vocabulary (80 Unique Words - Level 38 to 45+)
       const advancedVocab = [
         { en: "Meticulous", hi: "अति सावधान" }, { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Resilient", hi: "लचीला/दृढ़" }, { en: "Benevolent", hi: "परोपकारी" }, { en: "Ephemeral", hi: "क्षणिक" },
         { en: "Ubiquitous", hi: "सर्वव्यापी" }, { en: "Ambiguity", hi: "अस्पष्टता" }, { en: "Diligent", hi: "मेहनती" }, { en: "Empathy", hi: "सहानुभूति" }, { en: "Eloquence", hi: "वाक्पटुता" },
@@ -546,10 +560,12 @@
         { en: "Juxtapose", hi: "समीप रखना" }, { en: "Loquacious", hi: "बातूनी" }, { en: "Lucid", hi: "स्पष्ट" }, { en: "Magnanimous", hi: "उदारचित्त" }, { en: "Malevolent", hi: "दुष्ट" },
         { en: "Mundane", hi: "साधारण" }, { en: "Nefarious", hi: "कुख्यात" }, { en: "Obscure", hi: "अस्पष्ट" }, { en: "Obsequious", hi: "चापलूस" }, { en: "Ostracize", hi: "बहिष्कार करना" },
         { en: "Panacea", hi: "रामबाण" }, { en: "Paucity", hi: "कमी" }, { en: "Perfunctory", hi: "बेमन का" }, { en: "Plausible", hi: "विश्वसनीय" }, { en: "Plethora", hi: "अतिशयता" },
-        { en: "Precarious", hi: "खतरनाक" }, { en: "Proclivity", hi: "झुकाव" }, { en: "Profligate", hi: "फिजूलखर्च" }, { en: "Pugnacious", hi: "झगड़ालू" }, { en: "Recluse", hi: "वैरागी" }, { en: "Sanctimonious", hi: "पाखंडी" }, { en: "Serendipity", hi: "आकस्मिक लाभ" }, { en: "Sycophant", hi: "चापलूस" }, { en: "Taciturn", hi: "अल्पभाषी" }, { en: "Tenuous", hi: "तुच्छ" }, { en: "Trepidation", hi: "घबराहट" }, { en: "Unequivocal", hi: "स्पष्ट" }, { en: "Venerate", hi: "सम्मान करना" }, { en: "Veracity", hi: "सच्चाई" }, { en: "Vociferous", hi: "कोलाहलकारी" }
+        { en: "Precarious", hi: "खतरनाक" }, { en: "Proclivity", hi: "झुकाव" }, { en: "Profligate", hi: "फिजूलखर्च" }, { en: "Pugnacious", hi: "झगड़ालू" }, { en: "Recluse", hi: "वैरागी" },
+        { en: "Sanctimonious", hi: "पाखंडी" }, { en: "Serendipity", hi: "आकस्मिक लाभ" }, { en: "Sycophant", hi: "चापलूस" }, { en: "Taciturn", hi: "अल्पभाषी" }, { en: "Tenuous", hi: "तुच्छ" },
+        { en: "Trepidation", hi: "घबराहट" }, { en: "Unequivocal", hi: "स्पष्ट" }, { en: "Venerate", hi: "सम्मान करना" }, { en: "Veracity", hi: "सच्चाई" }, { en: "Vociferous", hi: "कोलाहलकारी" }
       ];
 
-      // Master Pool combining all difficulty levels in sequence
+      // सभी शब्दों की एक मास्टर लिस्ट (Easy से Hard के क्रम में)
       const masterVocabList = [
         ...easyVocab,
         ...mediumVocab,
@@ -557,10 +573,20 @@
         ...advancedVocab
       ];
 
-      // सभी हिंदी अर्थों की सूची - ऑप्शंस बनाने के लिए
+      // ऑप्शंस जनरेट करने के लिए सभी हिंदी अर्थों का कलेक्शन
       const allHindiMeanings = masterVocabList.map(v => v.hi);
 
-      // रैंडम 3 गलत विकल्प (Distractors) जनरेट करने का फंक्शन
+      // रैंडम शफल करने का फंक्शन
+      function shuffleArray(array) {
+        let shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      // 3 गलत विकल्प (Wrong Options) बनाने की तकनीक
       function generateOptions(correctAnswer) {
         let options = [correctAnswer];
         while (options.length < 4) {
@@ -573,17 +599,18 @@
       }
 
       // ===============================================
-      // 500 लेवल्स जनरेट करना (ZERO REPETITION LOGIC)
+      // ZERO REPETITION LEVEL GENERATOR LOGIC
       // ===============================================
       const levels = {};
-      const WORDS_PER_LEVEL = 10;
+      const WORDS_PER_LEVEL = 10; // हर लेवल में 10 अलग शब्द
       const TOTAL_WORDS = masterVocabList.length;
 
       for (let levelNum = 1; levelNum <= 500; levelNum++) {
         let levelWords = [];
         
         for (let w = 0; w < WORDS_PER_LEVEL; w++) {
-          // Calculate a unique index using total pool count
+          // गणितीय मॉड्युलस (Modulus) इंडेक्स का इस्तेमाल किया गया है 
+          // जिससे हर शब्द अगले लेवल्स में अपने सही क्रम से ही आए और रिपीट न हो।
           let wordIndex = ((levelNum - 1) * WORDS_PER_LEVEL + w) % TOTAL_WORDS;
           let wordObj = masterVocabList[wordIndex];
           
@@ -603,7 +630,7 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
-      // 🔊 शब्द बोलने के लिए Text-to-Speech (TTS) फंक्शन
+      // 🔊 स्पीच सिंथेसिस (Text-to-Speech)
       function speakWord(text) {
         if ('speechSynthesis' in window) {
           window.speechSynthesis.cancel();
@@ -615,17 +642,7 @@
         }
       }
 
-      // एरे को रैंडम/शफल करने का फंक्शन
-      function shuffleArray(array) {
-        let shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled;
-      }
-
-      // साउंड इफेक्ट्स (Beep/Chime)
+      // साउंड इफेक्ट्स
       function playSound(type) {
         try {
           let ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -649,7 +666,7 @@
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.45);
             osc.start();
             osc.stop(ctx.currentTime + 0.45);
-          } else { // click
+          } else { 
             osc.frequency.setValueAtTime(500, ctx.currentTime);
             gain.gain.setValueAtTime(0.6, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
@@ -679,13 +696,12 @@
         }
       }
 
-      // होम लेवल पाथ (Purple Theme)
+      // होम लेवल पाथ UI
       window.loadLevelScreen = function() {
         checkStreak();
         updateStats();
 
         let pathHtml = `
-          <!-- पर्पल बैनर + पांडा/बुक लोगो -->
           <div class="section-banner">
             <div class="banner-text">
               <h3>SECTION 1 • 500 LEVELS</h3>
@@ -696,7 +712,6 @@
             </div>
           </div>
 
-          <!-- 500 लेवल्स पाथ -->
           <div class="path-container">
         `;
 
@@ -764,7 +779,7 @@
 
         let optionsDiv = document.getElementById('options');
         
-        // **विकल्पों को Shuffle किया जा रहा है**
+        // हर बार बटन के विकल्पों को शफल करना
         let randomizedOptions = shuffleArray(wordData.options);
 
         randomizedOptions.forEach(opt => {
@@ -780,7 +795,7 @@
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
-        // **🔊 सही उत्तर बोलकर बताया जा रहा है**
+        // सही शब्द का उच्चारण
         speakWord(correct);
 
         if (selected === correct) {
