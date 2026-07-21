@@ -122,9 +122,11 @@
       flex: 1;
       overflow-y: auto;
       padding: 16px;
-      padding-bottom: 85px;
+      padding-bottom: 20px;
       background: #faf5ff;
       scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
     }
 
     /* 3. Section Banner */
@@ -174,7 +176,7 @@
       flex-direction: column;
       align-items: center;
       gap: 32px;
-      padding-bottom: 40px;
+      padding-bottom: 80px;
       position: relative;
     }
 
@@ -186,7 +188,7 @@
       z-index: 5;
     }
 
-    /* Level Badge Number فوق Box */
+    /* Level Badge Number */
     .level-badge {
       font-size: 11px;
       font-weight: 900;
@@ -216,7 +218,6 @@
       outline: none;
     }
 
-    /* Unlocked / Completed Nodes */
     .path-node.unlocked {
       background: linear-gradient(145deg, #a855f7, #7c3aed);
       box-shadow: 0 8px 0 #5b21b6, 0 12px 20px rgba(124, 58, 237, 0.35);
@@ -228,7 +229,6 @@
       box-shadow: 0 3px 0 #5b21b6, 0 4px 10px rgba(124, 58, 237, 0.2);
     }
 
-    /* Active Level Outer Ring Effect */
     .path-node.current-active {
       background: linear-gradient(145deg, #9333ea, #6b21a8) !important;
       box-shadow: 0 8px 0 #4c1d95, 0 12px 25px rgba(147, 51, 234, 0.4) !important;
@@ -251,7 +251,6 @@
       100% { transform: scale(1.18); opacity: 0; }
     }
 
-    /* Chest & Gift Nodes */
     .path-node.gift-node {
       background: linear-gradient(145deg, #fbbf24, #f59e0b) !important;
       box-shadow: 0 8px 0 #b45309, 0 12px 20px rgba(245, 158, 11, 0.35) !important;
@@ -263,7 +262,6 @@
       100% { transform: translateY(-4px) scale(1.05); }
     }
 
-    /* Locked Nodes */
     .path-node.locked {
       background: #e2e8f0;
       box-shadow: 0 8px 0 #cbd5e1;
@@ -281,7 +279,6 @@
     .offset-6 { transform: translateX(65px); }
     .offset-7 { transform: translateX(40px); }
 
-    /* Mascot */
     .path-mascot {
       font-size: 44px;
       margin: -8px 0;
@@ -294,18 +291,28 @@
       100% { transform: translateY(-8px); }
     }
 
-    /* 5. Quiz UI */
+    /* 5. Fixed & Optimized Quiz UI */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
     .quiz-card {
       text-align: center;
-      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-around;
     }
 
     .word-card-box {
       background: #ffffff;
-      border-radius: 24px;
-      padding: 24px 16px;
-      margin: 20px 0;
-      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.08);
+      border-radius: 20px;
+      padding: 16px 14px;
+      margin: 12px 0;
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.08);
       border: 1px solid #f3e8ff;
       display: flex;
       align-items: center;
@@ -314,7 +321,7 @@
     }
 
     .word-display {
-      font-size: 28px;
+      font-size: 26px;
       color: #2e1065;
       font-weight: 900;
     }
@@ -322,11 +329,11 @@
     .speaker-btn {
       background: #f3e8ff;
       border: none;
-      font-size: 20px;
-      padding: 10px 14px;
+      font-size: 18px;
+      padding: 8px 12px;
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 4px 0 #ddd6fe;
+      box-shadow: 0 3px 0 #ddd6fe;
       transition: transform 0.1s;
     }
 
@@ -335,16 +342,17 @@
     .options-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
     .option-btn {
       background: #ffffff;
       border: 2px solid #e2e8f0;
-      box-shadow: 0 5px 0 #cbd5e1;
-      padding: 16px;
-      border-radius: 20px;
-      font-size: 17px;
+      box-shadow: 0 4px 0 #cbd5e1;
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 16px;
       font-weight: 800;
       color: #334155;
       cursor: pointer;
@@ -353,7 +361,7 @@
     }
 
     .option-btn:active {
-      transform: translateY(3px);
+      transform: translateY(2px);
       box-shadow: 0 2px 0 #cbd5e1;
     }
 
@@ -361,19 +369,19 @@
       background: #22c55e !important;
       border-color: #22c55e !important;
       color: #ffffff !important;
-      box-shadow: 0 5px 0 #15803d !important;
+      box-shadow: 0 4px 0 #15803d !important;
     }
 
     .option-btn.wrong-btn {
       background: #ef4444 !important;
       border-color: #ef4444 !important;
       color: #ffffff !important;
-      box-shadow: 0 5px 0 #b91c1c !important;
+      box-shadow: 0 4px 0 #b91c1c !important;
     }
 
     .quiz-progress-bg {
       width: 100%;
-      height: 12px;
+      height: 10px;
       background: #e2e8f0;
       border-radius: 10px;
       overflow: hidden;
@@ -388,18 +396,18 @@
     }
 
     .continue-btn {
-      margin-top: 20px;
       width: 100%;
       background: #7c3aed;
       color: white;
       border: none;
-      padding: 16px;
-      border-radius: 20px;
+      padding: 15px;
+      border-radius: 18px;
       font-size: 17px;
       font-weight: 900;
       cursor: pointer;
       box-shadow: 0 5px 0 #5b21b6;
       display: none;
+      margin-top: 5px;
     }
 
     .continue-btn:active {
@@ -415,6 +423,7 @@
       justify-content: center;
       text-align: center;
       padding: 30px 10px;
+      height: 100%;
     }
 
     .trophy-icon {
@@ -426,9 +435,9 @@
     .purple-ribbon {
       background: #7c3aed;
       color: white;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
-      padding: 12px 32px;
+      padding: 12px 28px;
       border-radius: 20px;
       box-shadow: 0 6px 0 #5b21b6;
       margin-bottom: 16px;
@@ -533,7 +542,7 @@
     <div class="main-content" id="app"></div>
 
     <!-- 3. Bottom Navigation -->
-    <div class="bottom-nav">
+    <div class="bottom-nav" id="bottom-nav">
       <div class="nav-item active" onclick="loadLevelScreen()">🏠</div>
       <div class="nav-item" onclick="alert('📦 चेस्ट/स्टोर जल्द आ रहा है!')">🎁</div>
       <div class="nav-item" onclick="alert('🏆 लीडरबोर्ड जल्द उपलब्ध होगा!')">🏆</div>
@@ -619,7 +628,7 @@
         }
       };
 
-      // 🎵 Enhanced Audio Synthesis (Correct, Wrong & Level Victory Sounds)
+      // 🎵 Enhanced Audio Synthesis
       function playSound(type) {
         try {
           let ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -648,8 +657,7 @@
             osc.start();
             osc.stop(ctx.currentTime + 0.35);
           } else if (type === 'victory') {
-            // 🎉 Special Level Complete Fanfare Tune
-            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            const notes = [523.25, 659.25, 783.99, 1046.50];
             notes.forEach((freq, idx) => {
               let osc = ctx.createOscillator();
               let gain = ctx.createGain();
@@ -690,6 +698,9 @@
       window.loadLevelScreen = function() {
         checkStreak();
         updateStats();
+
+        // Show Bottom Nav on Home Screen
+        document.getElementById('bottom-nav').style.display = 'flex';
 
         let pathHtml = `
           <div class="section-banner">
@@ -756,27 +767,39 @@
       };
 
       function loadWord() {
+        // Hide Bottom Nav during Quiz to give full screen height to quiz
+        document.getElementById('bottom-nav').style.display = 'none';
+
         let wordData = levels[currentLevel][currentWord];
         let progress = (currentWord / levels[currentLevel].length) * 100;
 
         document.getElementById('app').innerHTML = `
-          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-            <span onclick="loadLevelScreen()" style="font-size: 22px; cursor: pointer; font-weight: bold; color: #7c3aed;">✕</span>
-            <div class="quiz-progress-bg">
-              <div class="quiz-progress-fill" style="width: ${progress}%"></div>
-            </div>
-          </div>
+          <div class="quiz-container">
+            <div>
+              <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                <span onclick="loadLevelScreen()" style="font-size: 22px; cursor: pointer; font-weight: bold; color: #7c3aed;">✕</span>
+                <div class="quiz-progress-bg">
+                  <div class="quiz-progress-fill" style="width: ${progress}%"></div>
+                </div>
+              </div>
 
-          <div class="quiz-card">
-            <p style="color: #7c3aed; font-weight: 800; font-size: 13px;">LEVEL ${currentLevel} • WORD ${currentWord + 1}/${levels[currentLevel].length}</p>
-            
-            <div class="word-card-box">
-              <h1 class="word-display">${wordData.en}</h1>
-              <button class="speaker-btn" onclick="speakWord('${wordData.en}')">🔊</button>
+              <div style="text-align: center; color: #7c3aed; font-weight: 800; font-size: 13px;">
+                LEVEL ${currentLevel} • WORD ${currentWord + 1}/${levels[currentLevel].length}
+              </div>
             </div>
 
-            <div class="options-grid" id="options"></div>
-            <button class="continue-btn" id="continue-btn" onclick="nextQ()">Next Question ❯</button>
+            <div class="quiz-card">
+              <div class="word-card-box">
+                <h1 class="word-display">${wordData.en}</h1>
+                <button class="speaker-btn" onclick="speakWord('${wordData.en}')">🔊</button>
+              </div>
+
+              <div class="options-grid" id="options"></div>
+            </div>
+
+            <div>
+              <button class="continue-btn" id="continue-btn" onclick="nextQ()">Next Question ❯</button>
+            </div>
           </div>
         `;
 
@@ -830,7 +853,7 @@
           }
           
           updateStats();
-          playSound('victory'); // 🏆 Played New Victory Sound
+          playSound('victory');
           triggerConfetti();
           showLevelSuccessScreen(earnedGems, isGiftLevel);
         } else {
