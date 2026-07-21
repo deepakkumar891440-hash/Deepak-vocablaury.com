@@ -188,7 +188,6 @@
       z-index: 5;
     }
 
-    /* Level Badge Number */
     .level-badge {
       font-size: 11px;
       font-weight: 900;
@@ -203,7 +202,6 @@
       border: 2px solid #ffffff;
     }
 
-    /* 🔲 Unique 3D Glass Box Node */
     .path-node {
       width: 78px;
       height: 78px;
@@ -269,7 +267,6 @@
       cursor: not-allowed;
     }
 
-    /* S-Curve Offsets */
     .offset-0 { transform: translateX(0px); }
     .offset-1 { transform: translateX(-40px); }
     .offset-2 { transform: translateX(-65px); }
@@ -291,7 +288,7 @@
       100% { transform: translateY(-8px); }
     }
 
-    /* 5. Fixed & Optimized Quiz UI */
+    /* Quiz UI */
     .quiz-container {
       display: flex;
       flex-direction: column;
@@ -415,7 +412,7 @@
       box-shadow: 0 3px 0 #5b21b6;
     }
 
-    /* 🏆 Victory Screen */
+    /* Victory Screen */
     .level-complete-card {
       display: flex;
       flex-direction: column;
@@ -475,7 +472,6 @@
       box-shadow: 0 3px 0 #15803d;
     }
 
-    /* 6. Fixed Bottom Navigation */
     .bottom-nav {
       position: absolute;
       bottom: 0;
@@ -508,7 +504,6 @@
       transform: translateY(-2px);
     }
 
-    /* Confetti Canvas */
     #confetti-canvas {
       position: absolute;
       top: 0;
@@ -525,13 +520,13 @@
   <div id="mobile-container">
     <canvas id="confetti-canvas"></canvas>
     
-    <!-- 1. Splash Screen -->
+    <!-- Splash Screen -->
     <div id="splash-screen">
       <div class="panda-logo">🐼</div>
       <div class="splash-title">THE Deepak Vocabulary</div>
     </div>
 
-    <!-- 2. Top Stats Bar -->
+    <!-- Top Stats Bar -->
     <div class="top-stats-bar">
       <div class="stat-item flag">🇮🇳</div>
       <div class="stat-item streak">🔥 <span id="streak-val">0</span></div>
@@ -541,7 +536,7 @@
     <!-- Main Content Body -->
     <div class="main-content" id="app"></div>
 
-    <!-- 3. Bottom Navigation -->
+    <!-- Bottom Navigation -->
     <div class="bottom-nav" id="bottom-nav">
       <div class="nav-item active" onclick="loadLevelScreen()">🏠</div>
       <div class="nav-item" onclick="alert('📦 चेस्ट/स्टोर जल्द आ रहा है!')">🎁</div>
@@ -554,8 +549,9 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-      // --- GLOBAL AUDIO CONTEXT (SOLVES MOBILES AUTOPLAY RESTRICTION) ---
+      // --- ULTRA-FAST HIGH PERFORMANCE AUDIO ENGINE ---
       let audioCtx = null;
+
       function initAudioContext() {
         if (!audioCtx) {
           audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -565,9 +561,10 @@
         }
       }
       
-      // Un-mute AudioContext on first touch/click
-      document.body.addEventListener('touchstart', initAudioContext, { once: true });
-      document.body.addEventListener('click', initAudioContext, { once: true });
+      // Global User Interaction Listener for Unlocking Sound Policy
+      ['touchstart', 'touchend', 'mousedown', 'click'].forEach(evt => {
+        document.body.addEventListener(evt, initAudioContext, { once: true });
+      });
 
       // Splash Screen Transition
       setTimeout(() => {
@@ -632,43 +629,43 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
-      // 🔊 FIXED & ROBUST SPEECH ENGINE
+      // 🔊 ADVANCED MOBILE COMPATIBLE TTS SPEECH ENGINE
       let synth = window.speechSynthesis;
       let voices = [];
 
-      function loadVoices() {
+      function populateVoices() {
         if ('speechSynthesis' in window) {
           voices = synth.getVoices();
         }
       }
-      loadVoices();
+
+      populateVoices();
       if ('speechSynthesis' in window && synth.onvoiceschanged !== undefined) {
-        synth.onvoiceschanged = loadVoices;
+        synth.onvoiceschanged = populateVoices;
       }
 
       window.speakWord = function(text, lang = 'en-US') {
         if (!('speechSynthesis' in window)) return;
 
-        // Reset any stuck speech queue with short timeout
+        // Force Clear stuck queue across Android/iOS mobile browsers
         synth.cancel();
 
-        setTimeout(() => {
-          let utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = lang;
-          utterance.rate = 0.85; // slightly slower for better clarity
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.rate = 0.9; 
 
-          if (voices.length === 0) voices = synth.getVoices();
-          
-          let preferredVoice = voices.find(v => v.lang.includes(lang.split('-')[0]));
-          if (preferredVoice) {
-            utterance.voice = preferredVoice;
-          }
+        if (voices.length === 0 && 'speechSynthesis' in window) {
+          voices = synth.getVoices();
+        }
 
-          synth.speak(utterance);
-        }, 60);
+        let matchedVoice = voices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith(lang.toLowerCase().slice(0, 2)));
+        if (matchedVoice) utterance.voice = matchedVoice;
+
+        // Instant Speak without unnecessary setTimeout delays
+        synth.speak(utterance);
       };
 
-      // 🎵 FIXED AUDIO SYNTHESIS & SOUND EFFECTS
+      // 🎵 ZERO-LATENCY INSTANT SOUND SYNTHESIZER
       function playSound(type) {
         try {
           initAudioContext();
@@ -684,13 +681,13 @@
             
             osc.type = 'sine';
             osc.frequency.setValueAtTime(523.25, now); // C5
-            osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+            osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
             
             gain.gain.setValueAtTime(0.3, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
             
             osc.start(now);
-            osc.stop(now + 0.35);
+            osc.stop(now + 0.3);
           } 
           else if (type === 'wrong') {
             let osc = audioCtx.createOscillator();
@@ -700,17 +697,16 @@
             
             osc.type = 'sawtooth';
             osc.frequency.setValueAtTime(180, now);
-            osc.frequency.setValueAtTime(110, now + 0.12);
+            osc.frequency.setValueAtTime(110, now + 0.08);
             
             gain.gain.setValueAtTime(0.3, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
             
             osc.start(now);
-            osc.stop(now + 0.35);
+            osc.stop(now + 0.3);
           } 
           else if (type === 'victory') {
-            // Level Complete Triumph Sound
-            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            const notes = [523.25, 659.25, 783.99, 1046.50];
             notes.forEach((freq, idx) => {
               let osc = audioCtx.createOscillator();
               let gain = audioCtx.createGain();
@@ -719,17 +715,17 @@
               gain.connect(audioCtx.destination);
               
               osc.type = 'triangle';
-              osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+              osc.frequency.setValueAtTime(freq, now + idx * 0.1);
               
-              gain.gain.setValueAtTime(0.4, now + idx * 0.12);
-              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.3);
+              gain.gain.setValueAtTime(0.35, now + idx * 0.1);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.25);
               
-              osc.start(now + idx * 0.12);
-              osc.stop(now + idx * 0.12 + 0.3);
+              osc.start(now + idx * 0.1);
+              osc.stop(now + idx * 0.1 + 0.25);
             });
           }
         } catch (e) {
-          console.error("Audio error: ", e);
+          console.error("Audio trigger error: ", e);
         }
       }
 
@@ -753,12 +749,10 @@
         }
       }
 
-      // Home Levels Screen
       window.loadLevelScreen = function() {
         checkStreak();
         updateStats();
 
-        // Show Bottom Nav on Home Screen
         document.getElementById('bottom-nav').style.display = 'flex';
 
         let pathHtml = `
@@ -827,7 +821,6 @@
       };
 
       function loadWord() {
-        // Hide Bottom Nav during Quiz to give full screen height to quiz
         document.getElementById('bottom-nav').style.display = 'none';
 
         let wordData = levels[currentLevel][currentWord];
@@ -863,8 +856,8 @@
           </div>
         `;
 
-        // Slight delay for smooth auto-speech when question opens
-        setTimeout(() => speakWord(wordData.en, 'en-US'), 200);
+        // Pronounce English Word Immediately
+        speakWord(wordData.en, 'en-US');
 
         let optionsDiv = document.getElementById('options');
         let randomizedOptions = shuffleArray(wordData.options);
@@ -883,7 +876,7 @@
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
-        // Play Sound and speak meaning
+        // Play Instant Audio & Speech Feedback
         if (selected === correct) {
           playSound('correct');
           btn.classList.add('correct-btn');
@@ -896,7 +889,7 @@
           });
         }
 
-        setTimeout(() => speakWord(correct, 'hi-IN'), 150);
+        speakWord(correct, 'hi-IN');
 
         document.getElementById('continue-btn').style.display = 'block';
       };
@@ -951,7 +944,6 @@
         }
       };
 
-      // Confetti Blast
       function triggerConfetti() {
         const canvas = document.getElementById('confetti-canvas');
         const ctx = canvas.getContext('2d');
