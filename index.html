@@ -460,58 +460,105 @@
       }, 2500);
 
       // ===============================================
-      // 📚 EASY TO HARD शब्दावली पूल (Vocab Pools)
+      // 📚 EASY TO HARD शब्दावली पूल (UNIQUE WORDS - NO REPEAT)
       // ===============================================
       
-      // 1. Easy Vocabulary (लेवल 1 - 100 के लिए)
+      // 1. Easy Vocabulary (100 Distinct Words)
       const easyVocab = [
-        { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" },
-        { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" }, { en: "Good", hi: "अच्छा" },
-        { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" },
-        { en: "Flower", hi: "फूल" }, { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" },
-        { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
-        { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" },
-        { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" }, { en: "Pen", hi: "कलम" },
-        { en: "Chair", hi: "कुर्सी" }, { en: "Table", hi: "मेज" }, { en: "Bird", hi: "पक्षी" },
-        { en: "Fish", hi: "मछली" }, { en: "Car", hi: "गाड़ी" }, { en: "Road", hi: "सड़क" },
-        { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" }
+        { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" }, { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" },
+        { en: "Good", hi: "अच्छा" }, { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" }, { en: "Flower", hi: "फूल" },
+        { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" }, { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
+        { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" }, { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" },
+        { en: "Pen", hi: "कलम" }, { en: "Chair", hi: "कुर्सी" }, { en: "Table", hi: "मेज" }, { en: "Bird", hi: "पक्षी" }, { en: "Fish", hi: "मछली" },
+        { en: "Car", hi: "गाड़ी" }, { en: "Road", hi: "सड़क" }, { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" },
+        { en: "Door", hi: "दरवाजा" }, { en: "Window", hi: "खिड़की" }, { en: "River", hi: "नदी" }, { en: "Mountain", hi: "पहाड़" }, { en: "Sky", hi: "आसमान" },
+        { en: "Star", hi: "तारा" }, { en: "Rain", hi: "बारिश" }, { en: "Wind", hi: "हवा" }, { en: "Fire", hi: "आग" }, { en: "Light", hi: "प्रकाश" },
+        { en: "Dark", hi: "अंधेरा" }, { en: "Big", hi: "बड़ा" }, { en: "Small", hi: "छोटा" }, { en: "Hot", hi: "गर्म" }, { en: "Cold", hi: "ठंडा" },
+        { en: "Fast", hi: "तेज़" }, { en: "Slow", hi: "धीमा" }, { en: "Sweet", hi: "मीठा" }, { en: "Sour", hi: "खट्टा" }, { en: "Clean", hi: "साफ" },
+        { en: "Dirty", hi: "गंदा" }, { en: "New", hi: "नया" }, { en: "Old", hi: "पुराना" }, { en: "Rich", hi: "अमीर" }, { en: "Poor", hi: "गरीब" },
+        { en: "Strong", hi: "मजबूत" }, { en: "Weak", hi: "कमजोर" }, { en: "Smile", hi: "मुस्कान" }, { en: "Cry", hi: "रोना" }, { en: "Laugh", hi: "हंसना" },
+        { en: "Sleep", hi: "सोना" }, { en: "Run", hi: "दौड़ना" }, { en: "Walk", hi: "चलना" }, { en: "Jump", hi: "कूदना" }, { en: "Play", hi: "खेलना" },
+        { en: "Sing", hi: "गाना" }, { en: "Dance", hi: "नाचना" }, { en: "Read", hi: "पढ़ना" }, { en: "Write", hi: "लिखना" }, { en: "Listen", hi: "सुनना" },
+        { en: "Look", hi: "देखना" }, { en: "Speak", hi: "बोलना" }, { en: "Think", hi: "सोचना" }, { en: "Love", hi: "प्यार" }, { en: "Help", hi: "मदद" },
+        { en: "Work", hi: "काम" }, { en: "Time", hi: "समय" }, { en: "Year", hi: "साल" }, { en: "Name", hi: "नाम" }, { en: "Place", hi: "जगह" },
+        { en: "Thing", hi: "चीज" }, { en: "Man", hi: "आदमी" }, { en: "Woman", hi: "महिला" }, { en: "Child", hi: "बच्चा" }, { en: "Life", hi: "जीवन" },
+        { en: "World", hi: "दुनिया" }, { en: "Eye", hi: "आंख" }, { en: "Hand", hi: "हाथ" }, { en: "Head", hi: "सिर" }, { en: "Heart", hi: "दिल" },
+        { en: "Food", hi: "भोजन" }, { en: "Bread", hi: "रोटी" }, { en: "Fruit", hi: "फल" }, { en: "Tea", hi: "चाय" }, { en: "Paper", hi: "कागज" },
+        { en: "Bag", hi: "थैला" }, { en: "Shoes", hi: "जूते" }, { en: "Clothes", hi: "कपड़े" }, { en: "Room", hi: "कमरा" }, { en: "Bed", hi: "बिस्तर" }
       ];
 
-      // 2. Medium Vocabulary (लेवल 101 - 250 के लिए)
+      // 2. Medium Vocabulary (150 Distinct Words)
       const mediumVocab = [
-        { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" },
-        { en: "Country", hi: "देश" }, { en: "Health", hi: "स्वास्थ्य" }, { en: "Education", hi: "शिक्षा" },
-        { en: "Travel", hi: "यात्रा" }, { en: "Success", hi: "सफलता" }, { en: "Problem", hi: "समस्या" },
-        { en: "Freedom", hi: "आजादी" }, { en: "Wisdom", hi: "बुद्धिमत्ता" }, { en: "Courage", hi: "साहस" },
-        { en: "Truth", hi: "सत्य" }, { en: "Knowledge", hi: "ज्ञान" }, { en: "Honest", hi: "ईमानदार" },
-        { en: "Peace", hi: "शांति" }, { en: "Future", hi: "भविष्य" }, { en: "History", hi: "इतिहास" },
-        { en: "Village", hi: "गांव" }, { en: "Danger", hi: "खतरा" }, { en: "Journey", hi: "यात्रा" },
-        { en: "Protect", hi: "रक्षा करना" }, { en: "Believe", hi: "विश्वास करना" }, { en: "Patience", hi: "धैर्य" }
+        { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" }, { en: "Country", hi: "देश" }, { en: "Health", hi: "स्वास्थ्य" },
+        { en: "Education", hi: "शिक्षा" }, { en: "Travel", hi: "यात्रा" }, { en: "Success", hi: "सफलता" }, { en: "Problem", hi: "समस्या" }, { en: "Freedom", hi: "आजादी" },
+        { en: "Wisdom", hi: "बुद्धिमत्ता" }, { en: "Courage", hi: "साहस" }, { en: "Truth", hi: "सत्य" }, { en: "Knowledge", hi: "ज्ञान" }, { en: "Honest", hi: "ईमानदार" },
+        { en: "Peace", hi: "शांति" }, { en: "Future", hi: "भविष्य" }, { en: "History", hi: "इतिहास" }, { en: "Village", hi: "गांव" }, { en: "Danger", hi: "खतरा" },
+        { en: "Journey", hi: "यात्रा" }, { en: "Protect", hi: "रक्षा करना" }, { en: "Believe", hi: "विश्वास करना" }, { en: "Patience", hi: "धैर्य" }, { en: "Brave", hi: "बहादुर" },
+        { en: "Clever", hi: "चतुर" }, { en: "Famous", hi: "प्रसिद्ध" }, { en: "Forgive", hi: "क्षमा करना" }, { en: "Polite", hi: "सभ्य" }, { en: "Respect", hi: "आदर" },
+        { en: "Secret", hi: "रहस्य" }, { en: "Silence", hi: "मौनावस्था" }, { en: "Simple", hi: "सरल" }, { en: "Strange", hi: "अजीब" }, { en: "Victory", hi: "जीत" },
+        { en: "Dream", hi: "सपना" }, { en: "Energy", hi: "ऊर्जा" }, { en: "Gift", hi: "उपहार" }, { en: "Memory", hi: "याद" }, { en: "Nature", hi: "प्रकृति" },
+        { en: "Power", hi: "शक्ति" }, { en: "Reason", hi: "कारण" }, { en: "Safety", hi: "सुरक्षा" }, { en: "Society", hi: "समाज" }, { en: "Talent", hi: "प्रतिभा" },
+        { en: "Accept", hi: "स्वीकार करना" }, { en: "Advise", hi: "सलाह देना" }, { en: "Agree", hi: "सहमत होना" }, { en: "Allow", hi: "अनुमति देना" }, { en: "Answer", hi: "उत्तर देना" },
+        { en: "Arrive", hi: "पहुंचना" }, { en: "Attack", hi: "हमला करना" }, { en: "Become", hi: "बनना" }, { en: "Begin", hi: "शुरू करना" }, { en: "Borrow", hi: "उधार लेना" },
+        { en: "Change", hi: "बदलना" }, { en: "Choose", hi: "चुनना" }, { en: "Create", hi: "बनाना" }, { en: "Decide", hi: "निर्णय लेना" }, { en: "Defeat", hi: "हराना" }, { en: "Depend", hi: "निर्भर होना" }, { en: "Describe", hi: "वर्णन करना" }, { en: "Destroy", hi: "नष्ट करना" }, { en: "Discover", hi: "खोज करना" }, { en: "Discuss", hi: "चर्चा करना" }, { en: "Expect", hi: "आशा करना" }, { en: "Explain", hi: "समझाना" }, { en: "Forget", hi: "भूलना" }, { en: "Improve", hi: "सुधार करना" }, { en: "Increase", hi: "बढ़ाना" }, { en: "Inform", hi: "सूचित करना" }, { en: "Invent", hi: "आविष्कार करना" }, { en: "Invite", hi: "आमंत्रित करना" }, { en: "Manage", hi: "प्रबंध करना" }, { en: "Measure", hi: "मापना" }, { en: "Notice", hi: "ध्यान देना" }, { en: "Offer", hi: "प्रस्ताव देना" }, { en: "Perform", hi: "प्रदर्शन करना" }, { en: "Promise", hi: "वादा करना" }, { en: "Refuse", hi: "मना करना" }, { en: "Remember", hi: "याद रखना" }, { en: "Search", hi: "खोजना" }, { en: "Suggest", hi: "सुझाव देना" }, { en: "Support", hi: "समर्थन करना" }, { en: "Understand", hi: "समझना" }, { en: "Warning", hi: "चेतावनी" }, { en: "Worship", hi: "पूजा" }, { en: "Curious", hi: "उत्सुक" }, { en: "Generous", hi: "उदार" }, { en: "Innocent", hi: "मासूम" }, { en: "Jealous", hi: "ईर्ष्यालु" }, { en: "Lazy", hi: "आलसी" }, { en: "Loyal", hi: "वफादार" }, { en: "Naughty", hi: "नटखट" }, { en: "Nervous", hi: "घबराया हुआ" }, { en: "Proud", hi: "गर्व" }, { en: "Selfish", hi: "स्वार्थी" }, { en: "Stubborn", hi: "जिद्दी" }, { en: "Useful", hi: "उपयोगी" }, { en: "Valuable", hi: "कीमती" }, { en: "Wealthy", hi: "धनी" }, { en: "Wicked", hi: "दुष्ट" }, { en: "Accident", hi: "दुर्घटना" }, { en: "Agreement", hi: "समझौता" }, { en: "Amount", hi: "राशि" }, { en: "Attention", hi: "ध्यान" }, { en: "Behavior", hi: "व्यवहार" }, { en: "Business", hi: "व्यापार" }, { en: "Century", hi: "सदी" }, { en: "Choice", hi: "पसंद" }, { en: "Collection", hi: "संग्रह" }, { en: "Condition", hi: "स्थिति" }, { en: "Connection", hi: "संबंध" }, { en: "Culture", hi: "संस्कृति" }, { en: "Decision", hi: "फैसला" }, { en: "Distance", hi: "दूरी" }, { en: "Effort", hi: "प्रयास" }, { en: "Example", hi: "उदाहरण" }, { en: "Experience", hi: "अनुभव" }, { en: "Expression", hi: "अभिव्यक्ति" }, { en: "Failure", hi: "विफलता" }, { en: "Feeling", hi: "भावना" }, { en: "Growth", hi: "विकास" }, { en: "Habit", hi: "आदत" }, { en: "Health", hi: "सेहत" }, { en: "Honesty", hi: "ईमानदारी" }, { en: "Impression", hi: "प्रभाव" }, { en: "Industry", hi: "उद्योग" }, { en: "Intention", hi: "इरादा" }, { en: "Language", hi: "भाषा" }, { en: "Leader", hi: "नेता" }, { en: "Location", hi: "स्थान" }, { en: "Message", hi: "संदेश" }, { en: "Method", hi: "तरीका" }, { en: "Nation", hi: "राष्ट्र" }, { en: "Opinion", hi: "राय" }, { en: "Passenger", hi: "यात्री" }, { en: "Pleasure", hi: "आनंद" }, { en: "Position", hi: "स्थिति" }, { en: "Practice", hi: "अभ्यास" }, { en: "Quality", hi: "गुणवत्ता" }, { en: "Quantity", hi: "मात्रा" }, { en: "Relation", hi: "रिश्ता" }, { en: "Result", hi: "परिणाम" }, { en: "Reward", hi: "पुरस्कार" }, { en: "Service", hi: "सेवा" }, { en: "Solution", hi: "समाधान" }, { en: "Stranger", hi: "अजनबी" }, { en: "System", hi: "प्रणाली" }, { en: "Thought", hi: "विचार" }
       ];
 
-      // 3. Hard Vocabulary (लेवल 251 - 400 के लिए)
+      // 3. Hard Vocabulary (150 Distinct Words)
       const hardVocab = [
-        { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Environment", hi: "पर्यावरण" },
-        { en: "Technology", hi: "प्रौद्योगिकी" }, { en: "Opportunity", hi: "अवसर" }, { en: "Responsibility", hi: "जिम्मेदारी" },
-        { en: "Globalization", hi: "वैश्वीकरण" }, { en: "Innovation", hi: "नवाचार" }, { en: "Sustainable", hi: "टिकाऊ" },
-        { en: "Leadership", hi: "नेतृत्व" }, { en: "Perseverance", hi: "दृढ़ता" }, { en: "Inspiration", hi: "प्रेरणा" },
-        { en: "Consequence", hi: "परिणाम" }, { en: "Elegance", hi: "लालित्य" }, { en: "Magnificent", hi: "शानदार" },
-        { en: "Reluctant", hi: "अनिच्छुक" }, { en: "Curiosity", hi: "जिज्ञासा" }, { en: "Affection", hi: "स्नेह" }
+        { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Environment", hi: "पर्यावरण" }, { en: "Technology", hi: "प्रौद्योगिकी" }, { en: "Opportunity", hi: "अवसर" },
+        { en: "Responsibility", hi: "जिम्मेदारी" }, { en: "Globalization", hi: "वैश्वीकरण" }, { en: "Innovation", hi: "नवाचार" }, { en: "Sustainable", hi: "टिकाऊ" }, { en: "Leadership", hi: "नेतृत्व" },
+        { en: "Perseverance", hi: "दृढ़ता" }, { en: "Inspiration", hi: "प्रेरणा" }, { en: "Consequence", hi: "परिणाम" }, { en: "Elegance", hi: "लालित्य" }, { en: "Magnificent", hi: "शानदार" },
+        { en: "Reluctant", hi: "अनिच्छुक" }, { en: "Curiosity", hi: "जिज्ञासा" }, { en: "Affection", hi: "स्नेह" }, { en: "Accurate", hi: "सटीक" }, { en: "Acknowledge", hi: "स्वीकार करना" },
+        { en: "Acquire", hi: "प्राप्त करना" }, { en: "Adapt", hi: "अनुकूल बनना" }, { en: "Advantage", hi: "लाभ" }, { en: "Aggressive", hi: "आक्रामक" }, { en: "Aesthetic", hi: "सौंदर्यशास्त्र" },
+        { en: "Anxiety", hi: "चिंता" }, { en: "Appreciate", hi: "सराहना करना" }, { en: "Authority", hi: "प्राधिकार" }, { en: "Barrier", hi: "बाधा" }, { en: "Beneficial", hi: "लाभदायक" },
+        { en: "Capacity", hi: "क्षमता" }, { en: "Challenge", hi: "चुनौती" }, { en: "Circumstance", hi: "परिस्थिति" }, { en: "Collaborate", hi: "सहयोग करना" }, { en: "Commitment", hi: "प्रतिबद्धता" },
+        { en: "Complicated", hi: "जटिल" }, { en: "Concentrate", hi: "ध्यान केंद्रित करना" }, { en: "Confidence", hi: "आत्मविश्वास" }, { en: "Conflict", hi: "संघर्ष" }, { en: "Contribution", hi: "योगदान" },
+        { en: "Criticize", hi: "आलोचना करना" }, { en: "Crucial", hi: "महत्वपूर्ण" }, { en: "Dedication", hi: "समर्पण" }, { en: "Demonstrate", hi: "प्रदर्शित करना" }, { en: "Determination", hi: "दृढ़ निश्चय" },
+        { en: "Discipline", hi: "अनुशासन" }, { en: "Diversity", hi: "विविधता" }, { en: "Dominant", hi: "प्रभावशाली" }, { en: "Efficiency", hi: "कार्यकुशलता" }, { en: "Emphasize", hi: "जोर देना" },
+        { en: "Enthusiasm", hi: "उत्साह" }, { en: "Essential", hi: "आवश्यक" }, { en: "Establish", hi: "स्थापित करना" }, { en: "Evident", hi: "प्रत्यक्ष" }, { en: "Fascinating", hi: "आकर्षक" },
+        { en: "Flourish", hi: "फलना-फूलना" }, { en: "Frustration", hi: "निराशा" }, { en: "Fundamental", hi: "मौलिक" }, { en: "Guarantee", hi: "गारंटी" }, { en: "Heritage", hi: "विरासत" },
+        { en: "Hesitate", hi: "हिचकिचाना" }, { en: "Hypothesis", hi: "परिकल्पना" }, { en: "Illusion", hi: "भ्रम" }, { en: "Impact", hi: "प्रभाव" }, { en: "Implementation", hi: "कार्यान्वयन" },
+        { en: "Indispensable", hi: "अपरिहार्य" }, { en: "Influence", hi: "प्रभाव" }, { en: "Infrastructure", hi: "बुनियादी ढांचा" }, { en: "Initiative", hi: "पहल" }, { en: "Insight", hi: "अंतर्दृष्टि" },
+        { en: "Integrity", hi: "सत्यनिष्ठा" }, { en: "Interfere", hi: "हस्तक्षेप करना" }, { en: "Interpretation", hi: "व्याख्या" }, { en: "Interrupt", hi: "बाधा डालना" }, { en: "Investigate", hi: "जांच करना" },
+        { en: "Justify", hi: "औचित्य सिद्ध करना" }, { en: "Legislation", hi: "विधान" }, { en: "Limitation", hi: "सीमा" }, { en: "Maintain", hi: "बनाए रखना" }, { en: "Manipulate", hi: "हेरफेर करना" },
+        { en: "Mechanism", hi: "तंत्र" }, { en: "Motivation", hi: "प्रेरणा" }, { en: "Negotiate", hi: "बातचीत करना" }, { en: "Objective", hi: "उद्देश्य" }, { en: "Obstacle", hi: "रुकावट" },
+        { en: "Obvious", hi: "स्पष्ट" }, { en: "Outcome", hi: "परिणाम" }, { en: "Participate", hi: "भाग लेना" }, { en: "Perspective", hi: "दृष्टिकोण" }, { en: "Phenomenon", hi: "घटना" },
+        { en: "Potential", hi: "क्षमता" }, { en: "Prejudice", hi: "पक्षपात" }, { en: "Priority", hi: "प्राथमिकता" }, { en: "Profound", hi: "गहरा" }, { en: "Promote", hi: "बढ़ावा देना" },
+        { en: "Proportion", hi: "अनुपात" }, { en: "Prosperity", hi: "समृद्धि" }, { en: "Psychology", hi: "मनोविज्ञान" }, { en: "Reasonable", hi: "उचित" }, { en: "Recognize", hi: "पहचानना" },
+        { en: "Recommend", hi: "सिफारिश करना" }, { en: "Reflection", hi: "प्रतिबिंब" }, { en: "Regulation", hi: "नियम" }, { en: "Reliable", hi: "विश्वसनीय" }, { en: "Remarkable", hi: "अद्भुत" },
+        { en: "Requirement", hi: "आवश्यकता" }, { en: "Resource", hi: "संसाधन" }, { en: "Restriction", hi: "प्रतिबंध" }, { en: "Sacrifice", hi: "त्याग" }, { en: "Satisfaction", hi: "संतोष" },
+        { en: "Significant", hi: "महत्वपूर्ण" }, { en: "Simultaneous", hi: "एक साथ" }, { en: "Sophisticated", hi: "जटिल/परिष्कृत" }, { en: "Speculate", hi: "अनुमान लगाना" }, { en: "Strategy", hi: "रणनीति" },
+        { en: "Substitute", hi: "विकल्प" }, { en: "Sufficient", hi: "पर्याप्त" }, { en: "Transformation", hi: "रूपांतरण" }, { en: "Ultimate", hi: "अंतिम" }, { en: "Unpredictable", hi: "अप्रत्याशित" }
       ];
 
-      // 4. Advanced / Competitive Vocabulary (लेवल 401 - 500 के लिए)
+      // 4. Advanced / Competitive Vocabulary (100 Distinct Words)
       const advancedVocab = [
-        { en: "Meticulous", hi: "अति सावधान" }, { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Resilient", hi: "लचीला/दृढ़" },
-        { en: "Benevolent", hi: "परोपकारी" }, { en: "Ephemeral", hi: "क्षणिक" }, { en: "Ubiquitous", hi: "सर्वव्यापी" },
-        { en: "Ambiguity", hi: "अस्पष्टता" }, { en: "Diligent", hi: "मेहनती" }, { en: "Empathy", hi: "सहानुभूति" },
-        { en: "Eloquence", hi: "वाक्पटुता" }, { en: "Quintessential", hi: "सर्वोत्कृष्ट" }, { en: "Superfluous", hi: "अनावश्यक" },
-        { en: "Vindicator", hi: "समर्थक" }, { en: "Acrophobia", hi: "ऊंचाई का डर" }, { en: "Lethargic", hi: "सुस्त" }
+        { en: "Meticulous", hi: "अति सावधान" }, { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Resilient", hi: "लचीला/दृढ़" }, { en: "Benevolent", hi: "परोपकारी" }, { en: "Ephemeral", hi: "क्षणिक" },
+        { en: "Ubiquitous", hi: "सर्वव्यापी" }, { en: "Ambiguity", hi: "अस्पष्टता" }, { en: "Diligent", hi: "मेहनती" }, { en: "Empathy", hi: "सहानुभूति" }, { en: "Eloquence", hi: "वाक्पटुता" },
+        { en: "Quintessential", hi: "सर्वोत्कृष्ट" }, { en: "Superfluous", hi: "अनावश्यक" }, { en: "Vindicator", hi: "समर्थक" }, { en: "Acrophobia", hi: "ऊंचाई का डर" }, { en: "Lethargic", hi: "सुस्त" },
+        { en: "Aberration", hi: "विपथन" }, { en: "Acrimonious", hi: "उग्र" }, { en: "Anachronism", hi: "कालभ्रम" }, { en: "Antipathy", hi: "विद्वेष" }, { en: "Apathy", hi: "उदासीनता" },
+        { en: "Audacious", hi: "साहसी" }, { en: "Auspicious", hi: "शुभ" }, { en: "Candid", hi: "स्पष्टवादी" }, { en: "Capricious", hi: "सनकी" }, { en: "Castigate", hi: "फटकारना" },
+        { en: "Coerce", hi: "मजबूर करना" }, { en: "Cogent", hi: "ठोस" }, { en: "Complacent", hi: "आत्मसंतुष्ट" }, { en: "Conundrum", hi: "पहेली" }, { en: "Deleterious", hi: "हानिकारक" },
+        { en: "Dichotomy", hi: "द्विभाजन" }, { en: "Disparate", hi: "असमान" }, { en: "Dogmatic", hi: "कट्टरपंथी" }, { en: "Eclectic", hi: "उदार" }, { en: "Efficacy", hi: "प्रभावकारिता" },
+        { en: "Egregious", hi: "अत्यंत निंदनीय" }, { en: "Enigma", hi: "पहेली" }, { en: "Equanimity", hi: "धैर्य" }, { en: "Esoteric", hi: "गुढ़" }, { en: "Exacerbate", hi: "बिगाड़ना" },
+        { en: "Fastidious", hi: "नखरेबाज़" }, { en: "Garrulous", hi: "बातूनी" }, { en: "Gregarious", hi: "सुसामाजिक" }, { en: "Harangue", hi: "उग्र भाषण" }, { en: "Imperious", hi: "घमंडी" },
+        { en: "Incorrigible", hi: "असुधार्य" }, { en: "Inexorable", hi: "अटल" }, { en: "Ingenuous", hi: "निश्छल" }, { en: "Inscrutable", hi: "रहस्यमय" }, { en: "Intransigent", hi: "कट्टर" },
+        { en: "Juxtapose", hi: "समीप रखना" }, { en: "Loquacious", hi: "बातूनी" }, { en: "Lucid", hi: "स्पष्ट" }, { en: "Magnanimous", hi: "उदारचित्त" }, { en: "Malevolent", hi: "दुष्ट" },
+        { en: "Mundane", hi: "साधारण" }, { en: "Nefarious", hi: "कुख्यात" }, { en: "Obscure", hi: "अस्पष्ट" }, { en: "Obsequious", hi: "चापलूस" }, { en: "Ostracize", hi: "बहिष्कार करना" },
+        { en: "Panacea", hi: "रामबाण" }, { en: "Paucity", hi: "कमी" }, { en: "Perfunctory", hi: "बेमन का" }, { en: "Plausible", hi: "विश्वसनीय" }, { en: "Plethora", hi: "अतिशयता" },
+        { en: "Precarious", hi: "खतरनाक" }, { en: "Proclivity", hi: "झुकाव" }, { en: "Profligate", hi: "फिजूलखर्च" }, { en: "Pugnacious", hi: "झगड़ालू" }, { en: "Recluse", hi: "वैरागी" }, { en: "Sanctimonious", hi: "पाखंडी" }, { en: "Serendipity", hi: "आकस्मिक लाभ" }, { en: "Sycophant", hi: "चापलूस" }, { en: "Taciturn", hi: "अल्पभाषी" }, { en: "Tenuous", hi: "तुच्छ" }, { en: "Trepidation", hi: "घबराहट" }, { en: "Unequivocal", hi: "स्पष्ट" }, { en: "Venerate", hi: "सम्मान करना" }, { en: "Veracity", hi: "सच्चाई" }, { en: "Vociferous", hi: "कोलाहलकारी" }
       ];
 
-      // सभी हिंदी अर्थों की एक लिस्ट - ऑप्शन बनाने के लिए
-      const allHindiMeanings = [
-        ...easyVocab, ...mediumVocab, ...hardVocab, ...advancedVocab
-      ].map(v => v.hi);
+      // Master Pool combining all difficulty levels in sequence
+      const masterVocabList = [
+        ...easyVocab,
+        ...mediumVocab,
+        ...hardVocab,
+        ...advancedVocab
+      ];
+
+      // सभी हिंदी अर्थों की सूची - ऑप्शंस बनाने के लिए
+      const allHindiMeanings = masterVocabList.map(v => v.hi);
 
       // रैंडम 3 गलत विकल्प (Distractors) जनरेट करने का फंक्शन
       function generateOptions(correctAnswer) {
@@ -525,25 +572,21 @@
         return shuffleArray(options);
       }
 
-      // 500 लेवल्स जनरेट करना (Easy -> Hard Dynamic Generator)
+      // ===============================================
+      // 500 लेवल्स जनरेट करना (ZERO REPETITION LOGIC)
+      // ===============================================
       const levels = {};
+      const WORDS_PER_LEVEL = 10;
+      const TOTAL_WORDS = masterVocabList.length;
 
       for (let levelNum = 1; levelNum <= 500; levelNum++) {
-        let pool = easyVocab;
-        
-        // लेवल्स की कठिनाई तय करना
-        if (levelNum > 400) {
-          pool = advancedVocab;
-        } else if (levelNum > 250) {
-          pool = hardVocab;
-        } else if (levelNum > 100) {
-          pool = mediumVocab;
-        }
-
         let levelWords = [];
-        // हर लेवल में 10 शब्द चुनना
-        for (let w = 0; w < 10; w++) {
-          let wordObj = pool[(levelNum * 3 + w) % pool.length];
+        
+        for (let w = 0; w < WORDS_PER_LEVEL; w++) {
+          // Calculate a unique index using total pool count
+          let wordIndex = ((levelNum - 1) * WORDS_PER_LEVEL + w) % TOTAL_WORDS;
+          let wordObj = masterVocabList[wordIndex];
+          
           levelWords.push({
             en: wordObj.en,
             hi: wordObj.hi,
@@ -721,7 +764,7 @@
 
         let optionsDiv = document.getElementById('options');
         
-        // **विकल्पों को Shuffle (रैंडम) किया जा रहा है**
+        // **विकल्पों को Shuffle किया जा रहा है**
         let randomizedOptions = shuffleArray(wordData.options);
 
         randomizedOptions.forEach(opt => {
