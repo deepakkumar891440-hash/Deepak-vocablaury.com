@@ -10,10 +10,11 @@
       margin: 0;
       padding: 0;
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      user-select: none;
     }
 
     body {
-      background-color: #12071f;
+      background-color: #0b0512;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,23 +26,24 @@
       width: 100%;
       max-width: 430px;
       height: 100vh;
-      max-height: 900px;
-      background: #fbf8ff;
+      max-height: 920px;
+      background: #fdfbfd;
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: 0 0 35px rgba(124, 58, 237, 0.35);
+      box-shadow: 0 0 50px rgba(124, 58, 237, 0.5);
       overflow: hidden;
+      border-radius: 24px;
     }
 
-    /* 1. पांडा स्प्लैश स्क्रीन (Purple Theme - 2.5 Sec) */
+    /* 1. पांडा स्प्लैश स्क्रीन */
     #splash-screen {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #7c3aed, #9333ea);
+      background: radial-gradient(circle at center, #9333ea, #4c1d95);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -50,44 +52,46 @@
       color: white;
       text-align: center;
       padding: 20px;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
     .panda-logo {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       background: #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 70px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      font-size: 75px;
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.6), 0 12px 25px rgba(0, 0, 0, 0.3);
       margin-bottom: 24px;
-      animation: bouncePanda 1.5s infinite ease-in-out alternate;
+      animation: bouncePanda 1.4s infinite alternate ease-in-out;
     }
 
     @keyframes bouncePanda {
       0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-12px) scale(1.05); }
+      100% { transform: translateY(-16px) scale(1.06); }
     }
 
     .splash-title {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       line-height: 1.4;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-transform: uppercase;
     }
 
     /* 2. टॉप स्टैट्स बार */
     .top-stats-bar {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
-      padding: 14px 20px;
-      border-bottom: 2px solid #e9d5ff;
-      background: #ffffff;
+      padding: 12px 20px;
+      border-bottom: 2px solid #f3e8ff;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
       font-weight: 800;
       font-size: 16px;
       z-index: 20;
@@ -97,69 +101,71 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      background: #f5f0ff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
     }
 
-    .stat-item.flag { font-size: 22px; }
-    .stat-item.streak { color: #7c3aed; }
-    .stat-item.gems { color: #a855f7; }
-    .stat-item.hearts { color: #ff3333; }
+    .stat-item.flag { background: transparent; font-size: 24px; padding: 0; }
+    .stat-item.streak { color: #d97706; }
+    .stat-item.gems { color: #9333ea; }
 
-    /* स्क्रॉल होने वाला एरिया */
+    /* स्क्रॉल एरिया */
     .main-content {
       flex: 1;
       overflow-y: auto;
-      padding: 15px;
+      padding: 18px;
       padding-bottom: 90px;
-      background: #fbf8ff;
+      background: #faf7ff;
     }
 
-    /* 3. पर्पल वेलकम बैनर */
+    /* 3. वेलकम बैनर */
     .section-banner {
-      background: linear-gradient(135deg, #7c3aed, #9333ea);
-      border-radius: 20px;
-      padding: 20px;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border-radius: 24px;
+      padding: 22px;
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 6px 0 #5b21b6;
-      margin-bottom: 30px;
+      box-shadow: 0 8px 0 #5b21b6, 0 12px 25px rgba(124, 58, 237, 0.25);
+      margin-bottom: 28px;
     }
 
     .banner-text h3 {
       font-size: 11px;
       text-transform: uppercase;
-      opacity: 0.95;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
       color: #f3e8ff;
     }
 
     .banner-text h1 {
-      font-size: 16px;
+      font-size: 17px;
       margin-top: 4px;
       font-weight: 900;
       line-height: 1.3;
     }
 
     .banner-logo {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       background: #ffffff;
-      border-radius: 14px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 32px;
       box-shadow: 0 4px 0 #5b21b6;
       flex-shrink: 0;
     }
 
-    /* 4. लेवल्स पाथ लेआउट (Purple Theme) */
+    /* 4. लेवल्स पाथ लेआउट */
     .path-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 26px;
       margin-top: 10px;
       padding-bottom: 20px;
     }
@@ -172,34 +178,34 @@
     }
 
     .path-node {
-      width: 75px;
-      height: 75px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
       cursor: pointer;
       position: relative;
-      transition: transform 0.1s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .path-node.unlocked {
-      background: #7c3aed;
-      box-shadow: 0 8px 0 #5b21b6;
+      background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+      box-shadow: 0 8px 0 #4c1d95, 0 10px 18px rgba(109, 40, 217, 0.35);
       color: white;
     }
 
     .path-node.unlocked:active {
-      transform: translateY(4px);
-      box-shadow: 0 4px 0 #5b21b6;
+      transform: translateY(5px);
+      box-shadow: 0 3px 0 #4c1d95;
     }
 
     .path-node.gift-node {
-      background: linear-gradient(135deg, #a855f7, #c084fc) !important;
-      box-shadow: 0 8px 0 #7e22ce !important;
-      animation: giftBounce 1.4s infinite alternate;
+      background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+      box-shadow: 0 8px 0 #b45309, 0 10px 18px rgba(245, 158, 11, 0.35) !important;
+      animation: giftBounce 1.2s infinite alternate ease-in-out;
     }
 
     @keyframes giftBounce {
@@ -208,28 +214,28 @@
     }
 
     .path-node.locked {
-      background: #e2e2e2;
-      box-shadow: 0 8px 0 #b0b0b0;
-      color: #a0a0a0;
+      background: #e5e7eb;
+      box-shadow: 0 8px 0 #9ca3af;
+      color: #9ca3af;
       cursor: not-allowed;
     }
 
     .level-label {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
-      color: #5b21b6;
+      color: #6d28d9;
       margin-top: 6px;
     }
 
-    /* S-Curve Offset */
+    /* S-Curve Offsets */
     .offset-0 { transform: translateX(0px); }
-    .offset-1 { transform: translateX(-40px); }
-    .offset-2 { transform: translateX(-60px); }
-    .offset-3 { transform: translateX(-40px); }
+    .offset-1 { transform: translateX(-45px); }
+    .offset-2 { transform: translateX(-65px); }
+    .offset-3 { transform: translateX(-45px); }
     .offset-4 { transform: translateX(0px); }
-    .offset-5 { transform: translateX(40px); }
-    .offset-6 { transform: translateX(60px); }
-    .offset-7 { transform: translateX(40px); }
+    .offset-5 { transform: translateX(45px); }
+    .offset-6 { transform: translateX(65px); }
+    .offset-7 { transform: translateX(45px); }
 
     /* क्विज UI */
     .quiz-card {
@@ -237,56 +243,80 @@
       padding-top: 10px;
     }
 
+    .word-card-box {
+      background: white;
+      border-radius: 22px;
+      padding: 24px 15px;
+      margin: 18px 0;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.08);
+      border: 2px solid #f3e8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
     .word-display {
-      font-size: 38px;
+      font-size: 32px;
       color: #2e1065;
-      margin: 25px 0;
       font-weight: 900;
     }
+
+    .speaker-btn {
+      background: #f3e8ff;
+      border: none;
+      font-size: 22px;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .speaker-btn:active { transform: scale(0.9); }
 
     .options-grid {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .option-btn {
       background: #ffffff;
       border: 2px solid #e9d5ff;
-      box-shadow: 0 4px 0 #e9d5ff;
+      box-shadow: 0 5px 0 #e9d5ff;
       padding: 16px;
-      border-radius: 16px;
+      border-radius: 18px;
       font-size: 18px;
       font-weight: 800;
       color: #4c1d95;
       cursor: pointer;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
     .option-btn:active {
-      transform: translateY(2px);
+      transform: translateY(3px);
       box-shadow: 0 2px 0 #e9d5ff;
     }
 
     .option-btn.correct-btn {
-      background: #4CAF50 !important;
-      border-color: #388E3C !important;
+      background: #22c55e !important;
+      border-color: #16a34a !important;
       color: #ffffff !important;
-      box-shadow: 0 4px 0 #2E7D32 !important;
+      box-shadow: 0 5px 0 #15803d !important;
     }
 
     .option-btn.wrong-btn {
-      background: #F44336 !important;
-      border-color: #D32F2F !important;
+      background: #ef4444 !important;
+      border-color: #dc2626 !important;
       color: #ffffff !important;
-      box-shadow: 0 4px 0 #C62828 !important;
+      box-shadow: 0 5px 0 #b91c1c !important;
     }
 
     .quiz-progress-bg {
       width: 100%;
       height: 14px;
-      background: #f3e8ff;
+      background: #e9d5ff;
       border-radius: 10px;
       overflow: hidden;
       margin: 10px 0 20px 0;
@@ -294,13 +324,33 @@
 
     .quiz-progress-fill {
       height: 100%;
-      background: #7c3aed;
+      background: linear-gradient(90deg, #8b5cf6, #a855f7);
       width: 0%;
       transition: width 0.3s ease;
       border-radius: 10px;
     }
 
-    /* जीत की स्क्रीन */
+    .continue-btn {
+      margin-top: 18px;
+      width: 100%;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #5b21b6;
+      display: none;
+    }
+
+    .continue-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 3px 0 #5b21b6;
+    }
+
+    /* 🏆 जीत की स्क्रीन */
     .level-complete-card {
       display: flex;
       flex-direction: column;
@@ -311,54 +361,38 @@
       animation: fadeIn 0.4s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .trophy-container {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
     .trophy-icon {
-      font-size: 100px;
-      filter: drop-shadow(0 8px 12px rgba(124, 58, 237, 0.35));
+      font-size: 90px;
+      filter: drop-shadow(0 10px 15px rgba(245, 158, 11, 0.4));
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
     }
 
     .purple-ribbon {
-      background: linear-gradient(180deg, #6b21a8 0%, #581c87 100%);
+      background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 100%);
       color: white;
-      font-size: 32px;
+      font-size: 26px;
       font-weight: 900;
-      padding: 10px 45px;
+      padding: 10px 40px;
       border-radius: 20px;
       box-shadow: 0 6px 0 #3b0764;
-      margin-bottom: 10px;
-      display: inline-block;
+      margin-bottom: 12px;
       letter-spacing: 0.5px;
     }
 
-    .completed-title {
-      font-size: 38px;
+    .reward-badge {
+      font-size: 18px;
       font-weight: 900;
-      color: #1f2937;
-      margin-bottom: 25px;
-    }
-
-    .green-check-circle {
-      width: 65px;
-      height: 65px;
-      background-color: #22c55e;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 34px;
-      font-weight: bold;
-      margin-bottom: 35px;
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+      color: #9333ea;
+      background: #f3e8ff;
+      padding: 8px 20px;
+      border-radius: 30px;
+      margin-bottom: 22px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .next-level-btn-green {
@@ -368,7 +402,7 @@
       border: none;
       padding: 18px;
       border-radius: 35px;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
       cursor: pointer;
       box-shadow: 0 6px 0 #15803d;
@@ -384,7 +418,7 @@
       box-shadow: 0 3px 0 #15803d;
     }
 
-    /* 5. बॉटम नेविगेशन बार */
+    /* बॉटम नेविगेशन बार */
     .bottom-nav {
       position: absolute;
       bottom: 0;
@@ -392,7 +426,7 @@
       width: 100%;
       height: 65px;
       background: #ffffff;
-      border-top: 2px solid #e9d5ff;
+      border-top: 2px solid #f3e8ff;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -403,19 +437,32 @@
       font-size: 24px;
       cursor: pointer;
       opacity: 0.5;
+      transition: transform 0.2s, opacity 0.2s;
     }
 
     .nav-item.active {
       opacity: 1;
-      transform: scale(1.15);
+      transform: scale(1.2);
+    }
+
+    /* कंफ़ेट्टी कैनवास */
+    #confetti-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 90;
     }
   </style>
 </head>
 <body>
 
   <div id="mobile-container">
+    <canvas id="confetti-canvas"></canvas>
     
-    <!-- पांडा स्प्लैश स्क्रीन (2.5 Sec) -->
+    <!-- 1. स्प्लैश स्क्रीन -->
     <div id="splash-screen">
       <div class="panda-logo">🐼</div>
       <div class="splash-title">welcome to THE Deepak vocabulary.Com</div>
@@ -426,19 +473,17 @@
       <div class="stat-item flag">🇮🇳</div>
       <div class="stat-item streak">🔥 <span id="streak-val">0</span></div>
       <div class="stat-item gems">💎 <span id="score-val">0</span></div>
-      <div class="stat-item hearts">❤️ 5</div>
     </div>
 
-    <!-- मुख्य कंटेंट बॉडी -->
+    <!-- मुख्य कंटेंट -->
     <div class="main-content" id="app"></div>
 
-    <!-- 5. बॉटम नेविगेशन बार -->
+    <!-- बॉटम नेविगेशन -->
     <div class="bottom-nav">
       <div class="nav-item active" onclick="loadLevelScreen()">🏠</div>
-      <div class="nav-item">📦</div>
-      <div class="nav-item">🏆</div>
-      <div class="nav-item">❤️</div>
-      <div class="nav-item">👤</div>
+      <div class="nav-item" onclick="alert('📦 जल्द आ रहा है!')">📦</div>
+      <div class="nav-item" onclick="alert('🏆 लीडरबोर्ड जल्द उपलब्ध होगा!')">🏆</div>
+      <div class="nav-item" onclick="alert('👤 प्रोफाइल सेटिंग्स')">👤</div>
     </div>
 
   </div>
@@ -450,133 +495,24 @@
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
         splash.style.opacity = '0';
-        setTimeout(() => {
-          splash.style.display = 'none';
-        }, 600);
-      }, 2500);
+        setTimeout(() => splash.style.display = 'none', 500);
+      }, 2200);
 
-      // ===============================================
-      // 📚 EASY TO HARD VOCABULARY POOL (STRICT UNIQUE WORDS)
-      // ===============================================
-      
-      // 1. Easy Vocabulary (100 Unique Words - Level 1 to 10)
-      const easyVocab = [
+      // Expandable Vocab Master List (Unique Words)
+      const masterVocabList = [
         { en: "Apple", hi: "सेब" }, { en: "Book", hi: "किताब" }, { en: "Cat", hi: "बिल्ली" }, { en: "Dog", hi: "कुत्ता" }, { en: "Water", hi: "पानी" },
         { en: "Good", hi: "अच्छा" }, { en: "Happy", hi: "खुश" }, { en: "House", hi: "घर" }, { en: "Eat", hi: "खाना" }, { en: "Flower", hi: "फूल" },
         { en: "Sun", hi: "सूरज" }, { en: "Moon", hi: "चांद" }, { en: "Tree", hi: "पेड़" }, { en: "Milk", hi: "दूध" }, { en: "Friend", hi: "दोस्त" },
         { en: "Boy", hi: "लड़का" }, { en: "Girl", hi: "लड़की" }, { en: "Mother", hi: "मां" }, { en: "Father", hi: "पिता" }, { en: "School", hi: "स्कूल" },
         { en: "Pen", hi: "कलम" }, { en: "Chair", hi: "कुर्सी" }, { en: "Table", hi: "मेज" }, { en: "Bird", hi: "पक्षी" }, { en: "Fish", hi: "मछली" },
-        { en: "Car", hi: "गाड़ी" }, { en: "Road", hi: "सड़क" }, { en: "Night", hi: "रात" }, { en: "Day", hi: "दिन" }, { en: "City", hi: "शहर" },
-        { en: "Door", hi: "दरवाजा" }, { en: "Window", hi: "खिड़की" }, { en: "River", hi: "नदी" }, { en: "Mountain", hi: "पहाड़" }, { en: "Sky", hi: "आसमान" },
-        { en: "Star", hi: "तारा" }, { en: "Rain", hi: "बारिश" }, { en: "Wind", hi: "हवा" }, { en: "Fire", hi: "आग" }, { en: "Light", hi: "प्रकाश" },
-        { en: "Dark", hi: "अंधेरा" }, { en: "Big", hi: "बड़ा" }, { en: "Small", hi: "छोटा" }, { en: "Hot", hi: "गर्म" }, { en: "Cold", hi: "ठंडा" },
-        { en: "Fast", hi: "तेज़" }, { en: "Slow", hi: "धीमा" }, { en: "Sweet", hi: "मीठा" }, { en: "Sour", hi: "खट्टा" }, { en: "Clean", hi: "साफ" },
-        { en: "Dirty", hi: "गंदा" }, { en: "New", hi: "नया" }, { en: "Old", hi: "पुराना" }, { en: "Rich", hi: "अमीर" }, { en: "Poor", hi: "गरीब" },
-        { en: "Strong", hi: "मजबूत" }, { en: "Weak", hi: "कमजोर" }, { en: "Smile", hi: "मुस्कान" }, { en: "Cry", hi: "रोना" }, { en: "Laugh", hi: "हंसना" },
-        { en: "Sleep", hi: "सोना" }, { en: "Run", hi: "दौड़ना" }, { en: "Walk", hi: "चलना" }, { en: "Jump", hi: "कूदना" }, { en: "Play", hi: "खेलना" },
-        { en: "Sing", hi: "गाना" }, { en: "Dance", hi: "नाचना" }, { en: "Read", hi: "पढ़ना" }, { en: "Write", hi: "लिखना" }, { en: "Listen", hi: "सुनना" },
-        { en: "Look", hi: "देखना" }, { en: "Speak", hi: "बोलना" }, { en: "Think", hi: "सोचना" }, { en: "Love", hi: "प्यार" }, { en: "Help", hi: "मदद" },
-        { en: "Work", hi: "काम" }, { en: "Time", hi: "समय" }, { en: "Year", hi: "साल" }, { en: "Name", hi: "नाम" }, { en: "Place", hi: "जगह" },
-        { en: "Thing", hi: "चीज" }, { en: "Man", hi: "आदमी" }, { en: "Woman", hi: "महिला" }, { en: "Child", hi: "बच्चा" }, { en: "Life", hi: "जीवन" },
-        { en: "World", hi: "दुनिया" }, { en: "Eye", hi: "आंख" }, { en: "Hand", hi: "हाथ" }, { en: "Head", hi: "सिर" }, { en: "Heart", hi: "दिल" },
-        { en: "Food", hi: "भोजन" }, { en: "Bread", hi: "रोटी" }, { en: "Fruit", hi: "फल" }, { en: "Tea", hi: "चाय" }, { en: "Paper", hi: "कागज" },
-        { en: "Bag", hi: "थैला" }, { en: "Shoes", hi: "जूते" }, { en: "Clothes", hi: "कपड़े" }, { en: "Room", hi: "कमरा" }, { en: "Bed", hi: "बिस्तर" }
-      ];
-
-      // 2. Medium Vocabulary (150 Unique Words - Level 11 to 25)
-      const mediumVocab = [
         { en: "Beautiful", hi: "सुंदर" }, { en: "Money", hi: "पैसा" }, { en: "Family", hi: "परिवार" }, { en: "Country", hi: "देश" }, { en: "Health", hi: "स्वास्थ्य" },
         { en: "Education", hi: "शिक्षा" }, { en: "Travel", hi: "यात्रा" }, { en: "Success", hi: "सफलता" }, { en: "Problem", hi: "समस्या" }, { en: "Freedom", hi: "आजादी" },
-        { en: "Wisdom", hi: "बुद्धिमत्ता" }, { en: "Courage", hi: "साहस" }, { en: "Truth", hi: "सत्य" }, { en: "Knowledge", hi: "ज्ञान" }, { en: "Honest", hi: "ईमानदार" },
-        { en: "Peace", hi: "शांति" }, { en: "Future", hi: "भविष्य" }, { en: "History", hi: "इतिहास" }, { en: "Village", hi: "गांव" }, { en: "Danger", hi: "खतरा" },
-        { en: "Journey", hi: "यात्रा" }, { en: "Protect", hi: "रक्षा करना" }, { en: "Believe", hi: "विश्वास करना" }, { en: "Patience", hi: "धैर्य" }, { en: "Brave", hi: "बहादुर" },
-        { en: "Clever", hi: "चतुर" }, { en: "Famous", hi: "प्रसिद्ध" }, { en: "Forgive", hi: "क्षमा करना" }, { en: "Polite", hi: "सभ्य" }, { en: "Respect", hi: "आदर" },
-        { en: "Secret", hi: "रहस्य" }, { en: "Silence", hi: "मौनावस्था" }, { en: "Simple", hi: "सरल" }, { en: "Strange", hi: "अजीब" }, { en: "Victory", hi: "जीत" },
-        { en: "Dream", hi: "सपना" }, { en: "Energy", hi: "ऊर्जा" }, { en: "Gift", hi: "उपहार" }, { en: "Memory", hi: "याद" }, { en: "Nature", hi: "प्रकृति" },
-        { en: "Power", hi: "शक्ति" }, { en: "Reason", hi: "कारण" }, { en: "Safety", hi: "सुरक्षा" }, { en: "Society", hi: "समाज" }, { en: "Talent", hi: "प्रतिभा" },
-        { en: "Accept", hi: "स्वीकार करना" }, { en: "Advise", hi: "सलाह देना" }, { en: "Agree", hi: "सहमत होना" }, { en: "Allow", hi: "अनुमति देना" }, { en: "Answer", hi: "उत्तर देना" },
-        { en: "Arrive", hi: "पहुंचना" }, { en: "Attack", hi: "हमला करना" }, { en: "Become", hi: "बनना" }, { en: "Begin", hi: "शुरू करना" }, { en: "Borrow", hi: "उधार लेना" },
-        { en: "Change", hi: "बदलना" }, { en: "Choose", hi: "चुनना" }, { en: "Create", hi: "बनाना" }, { en: "Decide", hi: "निर्णय लेना" }, { en: "Defeat", hi: "हराना" },
-        { en: "Depend", hi: "निर्भर होना" }, { en: "Describe", hi: "वर्णन करना" }, { en: "Destroy", hi: "नष्ट करना" }, { en: "Discover", hi: "खोज करना" }, { en: "Discuss", hi: "चर्चा करना" },
-        { en: "Expect", hi: "आशा करना" }, { en: "Explain", hi: "समझाना" }, { en: "Forget", hi: "भूलना" }, { en: "Improve", hi: "सुधार करना" }, { en: "Increase", hi: "बढ़ाना" },
-        { en: "Inform", hi: "सूचित करना" }, { en: "Invent", hi: "आविष्कार करना" }, { en: "Invite", hi: "आमंत्रित करना" }, { en: "Manage", hi: "प्रबंध करना" }, { en: "Measure", hi: "मापना" },
-        { en: "Notice", hi: "ध्यान देना" }, { en: "Offer", hi: "प्रस्ताव देना" }, { en: "Perform", hi: "प्रदर्शन करना" }, { en: "Promise", hi: "वादा करना" }, { en: "Refuse", hi: "मना करना" },
-        { en: "Remember", hi: "याद रखना" }, { en: "Search", hi: "खोजना" }, { en: "Suggest", hi: "सुझाव देना" }, { en: "Support", hi: "समर्थन करना" }, { en: "Understand", hi: "समझना" },
-        { en: "Warning", hi: "चेतावनी" }, { en: "Worship", hi: "पूजा" }, { en: "Curious", hi: "उत्सुक" }, { en: "Generous", hi: "उदार" }, { en: "Innocent", hi: "मासूम" },
-        { en: "Jealous", hi: "ईर्ष्यालु" }, { en: "Lazy", hi: "आलसी" }, { en: "Loyal", hi: "वफादार" }, { en: "Naughty", hi: "नटखट" }, { en: "Nervous", hi: "घबराया हुआ" },
-        { en: "Proud", hi: "गर्व" }, { en: "Selfish", hi: "स्वार्थी" }, { en: "Stubborn", hi: "जिद्दी" }, { en: "Useful", hi: "उपयोगी" }, { en: "Valuable", hi: "कीमती" },
-        { en: "Wealthy", hi: "धनी" }, { en: "Wicked", hi: "दुष्ट" }, { en: "Accident", hi: "दुर्घटना" }, { en: "Agreement", hi: "समझौता" }, { en: "Amount", hi: "राशि" },
-        { en: "Attention", hi: "ध्यान" }, { en: "Behavior", hi: "व्यवहार" }, { en: "Business", hi: "व्यापार" }, { en: "Century", hi: "सदी" }, { en: "Choice", hi: "पसंद" },
-        { en: "Collection", hi: "संग्रह" }, { en: "Condition", hi: "स्थिति" }, { en: "Connection", hi: "संबंध" }, { en: "Culture", hi: "संस्कृति" }, { en: "Decision", hi: "फैसला" },
-        { en: "Distance", hi: "दूरी" }, { en: "Effort", hi: "प्रयास" }, { en: "Example", hi: "उदाहरण" }, { en: "Experience", hi: "अनुभव" }, { en: "Expression", hi: "अभिव्यक्ति" },
-        { en: "Failure", hi: "विफलता" }, { en: "Feeling", hi: "भावना" }, { en: "Growth", hi: "विकास" }, { en: "Habit", hi: "आदत" }, { en: "Honesty", hi: "ईमानदारी" },
-        { en: "Impression", hi: "प्रभाव" }, { en: "Industry", hi: "उद्योग" }, { en: "Intention", hi: "इरादा" }, { en: "Language", hi: "भाषा" }, { en: "Leader", hi: "नेता" },
-        { en: "Location", hi: "स्थान" }, { en: "Message", hi: "संदेश" }, { en: "Method", hi: "तरीका" }, { en: "Nation", hi: "राष्ट्र" }, { en: "Opinion", hi: "राय" },
-        { en: "Passenger", hi: "यात्री" }, { en: "Pleasure", hi: "आनंद" }, { en: "Position", hi: "स्थिति" }, { en: "Practice", hi: "अभ्यास" }, { en: "Quality", hi: "गुणवत्ता" },
-        { en: "Quantity", hi: "मात्रा" }, { en: "Relation", hi: "रिश्ता" }, { en: "Result", hi: "परिणाम" }, { en: "Reward", hi: "पुरस्कार" }, { en: "Service", hi: "सेवा" },
-        { en: "Solution", hi: "समाधान" }, { en: "Stranger", hi: "अजनबी" }, { en: "System", hi: "प्रणाली" }, { en: "Thought", hi: "विचार" }
-      ];
-
-      // 3. Hard Vocabulary (120 Unique Words - Level 26 to 37)
-      const hardVocab = [
         { en: "Ambition", hi: "महत्वाकांक्षा" }, { en: "Develop", hi: "विकसित करना" }, { en: "Environment", hi: "पर्यावरण" }, { en: "Technology", hi: "प्रौद्योगिकी" }, { en: "Opportunity", hi: "अवसर" },
-        { en: "Responsibility", hi: "जिम्मेदारी" }, { en: "Globalization", hi: "वैश्वीकरण" }, { en: "Innovation", hi: "नवाचार" }, { en: "Sustainable", hi: "टिकाऊ" }, { en: "Leadership", hi: "नेतृत्व" },
-        { en: "Perseverance", hi: "दृढ़ता" }, { en: "Inspiration", hi: "प्रेरणा" }, { en: "Consequence", hi: "परिणाम" }, { en: "Elegance", hi: "लालित्य" }, { en: "Magnificent", hi: "शानदार" },
-        { en: "Reluctant", hi: "अनिच्छुक" }, { en: "Curiosity", hi: "जिज्ञासा" }, { en: "Affection", hi: "स्नेह" }, { en: "Accurate", hi: "सटीक" }, { en: "Acknowledge", hi: "स्वीकार करना" },
-        { en: "Acquire", hi: "प्राप्त करना" }, { en: "Adapt", hi: "अनुकूल बनना" }, { en: "Advantage", hi: "लाभ" }, { en: "Aggressive", hi: "आक्रामक" }, { en: "Aesthetic", hi: "सौंदर्यशास्त्र" },
-        { en: "Anxiety", hi: "चिंता" }, { en: "Appreciate", hi: "सराहना करना" }, { en: "Authority", hi: "प्राधिकार" }, { en: "Barrier", hi: "बाधा" }, { en: "Beneficial", hi: "लाभदायक" },
-        { en: "Capacity", hi: "क्षमता" }, { en: "Challenge", hi: "चुनौती" }, { en: "Circumstance", hi: "परिस्थिति" }, { en: "Collaborate", hi: "सहयोग करना" }, { en: "Commitment", hi: "प्रतिबद्धता" },
-        { en: "Complicated", hi: "जटिल" }, { en: "Concentrate", hi: "ध्यान केंद्रित करना" }, { en: "Confidence", hi: "आत्मविश्वास" }, { en: "Conflict", hi: "संघर्ष" }, { en: "Contribution", hi: "योगदान" },
-        { en: "Criticize", hi: "आलोचना करना" }, { en: "Crucial", hi: "महत्वपूर्ण" }, { en: "Dedication", hi: "समर्पण" }, { en: "Demonstrate", hi: "प्रदर्शित करना" }, { en: "Determination", hi: "दृढ़ निश्चय" },
-        { en: "Discipline", hi: "अनुशासन" }, { en: "Diversity", hi: "विविधता" }, { en: "Dominant", hi: "प्रभावशाली" }, { en: "Efficiency", hi: "कार्यकुशलता" }, { en: "Emphasize", hi: "जोर देना" },
-        { en: "Enthusiasm", hi: "उत्साह" }, { en: "Essential", hi: "आवश्यक" }, { en: "Establish", hi: "स्थापित करना" }, { en: "Evident", hi: "प्रत्यक्ष" }, { en: "Fascinating", hi: "आकर्षक" },
-        { en: "Flourish", hi: "फलना-फूलना" }, { en: "Frustration", hi: "निराशा" }, { en: "Fundamental", hi: "मौलिक" }, { en: "Guarantee", hi: "गारंटी" }, { en: "Heritage", hi: "विरासत" },
-        { en: "Hesitate", hi: "हिचकिचाना" }, { en: "Hypothesis", hi: "परिकल्पना" }, { en: "Illusion", hi: "भ्रम" }, { en: "Impact", hi: "प्रभाव" }, { en: "Implementation", hi: "कार्यान्वयन" },
-        { en: "Indispensable", hi: "अपरिहार्य" }, { en: "Influence", hi: "प्रभाव" }, { en: "Infrastructure", hi: "बुनियादी ढांचा" }, { en: "Initiative", hi: "पहल" }, { en: "Insight", hi: "अंतर्दृष्टि" },
-        { en: "Integrity", hi: "सत्यनिष्ठा" }, { en: "Interfere", hi: "हस्तक्षेप करना" }, { en: "Interpretation", hi: "व्याख्या" }, { en: "Interrupt", hi: "बाधा डालना" }, { en: "Investigate", hi: "जांच करना" },
-        { en: "Justify", hi: "औचित्य सिद्ध करना" }, { en: "Legislation", hi: "विधान" }, { en: "Limitation", hi: "सीमा" }, { en: "Maintain", hi: "बनाए रखना" }, { en: "Manipulate", hi: "हेरफेर करना" },
-        { en: "Mechanism", hi: "तंत्र" }, { en: "Motivation", hi: "प्रेरणा" }, { en: "Negotiate", hi: "बातचीत करना" }, { en: "Objective", hi: "उद्देश्य" }, { en: "Obstacle", hi: "रुकावट" },
-        { en: "Obvious", hi: "स्पष्ट" }, { en: "Outcome", hi: "परिणाम" }, { en: "Participate", hi: "भाग लेना" }, { en: "Perspective", hi: "दृष्टिकोण" }, { en: "Phenomenon", hi: "घटना" },
-        { en: "Potential", hi: "क्षमता" }, { en: "Prejudice", hi: "पक्षपात" }, { en: "Priority", hi: "प्राथमिकता" }, { en: "Profound", hi: "गहरा" }, { en: "Promote", hi: "बढ़ावा देना" },
-        { en: "Proportion", hi: "अनुपात" }, { en: "Prosperity", hi: "समृद्धि" }, { en: "Psychology", hi: "मनोविज्ञान" }, { en: "Reasonable", hi: "उचित" }, { en: "Recognize", hi: "पहचानना" },
-        { en: "Recommend", hi: "सिफारिश करना" }, { en: "Reflection", hi: "प्रतिबिंब" }, { en: "Regulation", hi: "नियम" }, { en: "Reliable", hi: "विश्वसनीय" }, { en: "Remarkable", hi: "अद्भुत" },
-        { en: "Requirement", hi: "आवश्यकता" }, { en: "Resource", hi: "संसाधन" }, { en: "Restriction", hi: "प्रतिबंध" }, { en: "Sacrifice", hi: "त्याग" }, { en: "Satisfaction", hi: "संतोष" },
-        { en: "Significant", hi: "महत्वपूर्ण" }, { en: "Simultaneous", hi: "एक साथ" }, { en: "Sophisticated", hi: "जटिल/परिष्कृत" }, { en: "Speculate", hi: "अनुमान लगाना" }, { en: "Strategy", hi: "रणनीति" },
-        { en: "Substitute", hi: "विकल्प" }, { en: "Sufficient", hi: "पर्याप्त" }, { en: "Transformation", hi: "रूपांतरण" }, { en: "Ultimate", hi: "अंतिम" }, { en: "Unpredictable", hi: "अप्रत्याशित" }
+        { en: "Responsibility", hi: "जिम्मेदारी" }, { en: "Innovation", hi: "नवाचार" }, { en: "Sustainable", hi: "टिकाऊ" }, { en: "Leadership", hi: "नेतृत्व" }, { en: "Perseverance", hi: "दृढ़ता" }
       ];
 
-      // 4. Advanced / Competitive Vocabulary (80 Unique Words - Level 38 to 45+)
-      const advancedVocab = [
-        { en: "Meticulous", hi: "अति सावधान" }, { en: "Pragmatic", hi: "व्यावहारिक" }, { en: "Resilient", hi: "लचीला/दृढ़" }, { en: "Benevolent", hi: "परोपकारी" }, { en: "Ephemeral", hi: "क्षणिक" },
-        { en: "Ubiquitous", hi: "सर्वव्यापी" }, { en: "Ambiguity", hi: "अस्पष्टता" }, { en: "Diligent", hi: "मेहनती" }, { en: "Empathy", hi: "सहानुभूति" }, { en: "Eloquence", hi: "वाक्पटुता" },
-        { en: "Quintessential", hi: "सर्वोत्कृष्ट" }, { en: "Superfluous", hi: "अनावश्यक" }, { en: "Vindicator", hi: "समर्थक" }, { en: "Acrophobia", hi: "ऊंचाई का डर" }, { en: "Lethargic", hi: "सुस्त" },
-        { en: "Aberration", hi: "विपथन" }, { en: "Acrimonious", hi: "उग्र" }, { en: "Anachronism", hi: "कालभ्रम" }, { en: "Antipathy", hi: "विद्वेष" }, { en: "Apathy", hi: "उदासीनता" },
-        { en: "Audacious", hi: "साहसी" }, { en: "Auspicious", hi: "शुभ" }, { en: "Candid", hi: "स्पष्टवादी" }, { en: "Capricious", hi: "सनकी" }, { en: "Castigate", hi: "फटकारना" },
-        { en: "Coerce", hi: "मजबूर करना" }, { en: "Cogent", hi: "ठोस" }, { en: "Complacent", hi: "आत्मसंतुष्ट" }, { en: "Conundrum", hi: "पहेली" }, { en: "Deleterious", hi: "हानिकारक" },
-        { en: "Dichotomy", hi: "द्विभाजन" }, { en: "Disparate", hi: "असमान" }, { en: "Dogmatic", hi: "कट्टरपंथी" }, { en: "Eclectic", hi: "उदार" }, { en: "Efficacy", hi: "प्रभावकारिता" },
-        { en: "Egregious", hi: "अत्यंत निंदनीय" }, { en: "Enigma", hi: "पहेली" }, { en: "Equanimity", hi: "धैर्य" }, { en: "Esoteric", hi: "गुढ़" }, { en: "Exacerbate", hi: "बिगाड़ना" },
-        { en: "Fastidious", hi: "नखरेबाज़" }, { en: "Garrulous", hi: "बातूनी" }, { en: "Gregarious", hi: "सुसामाजिक" }, { en: "Harangue", hi: "उग्र भाषण" }, { en: "Imperious", hi: "घमंडी" },
-        { en: "Incorrigible", hi: "असुधार्य" }, { en: "Inexorable", hi: "अटल" }, { en: "Ingenuous", hi: "निश्छल" }, { en: "Inscrutable", hi: "रहस्यमय" }, { en: "Intransigent", hi: "कट्टर" },
-        { en: "Juxtapose", hi: "समीप रखना" }, { en: "Loquacious", hi: "बातूनी" }, { en: "Lucid", hi: "स्पष्ट" }, { en: "Magnanimous", hi: "उदारचित्त" }, { en: "Malevolent", hi: "दुष्ट" },
-        { en: "Mundane", hi: "साधारण" }, { en: "Nefarious", hi: "कुख्यात" }, { en: "Obscure", hi: "अस्पष्ट" }, { en: "Obsequious", hi: "चापलूस" }, { en: "Ostracize", hi: "बहिष्कार करना" },
-        { en: "Panacea", hi: "रामबाण" }, { en: "Paucity", hi: "कमी" }, { en: "Perfunctory", hi: "बेमन का" }, { en: "Plausible", hi: "विश्वसनीय" }, { en: "Plethora", hi: "अतिशयता" },
-        { en: "Precarious", hi: "खतरनाक" }, { en: "Proclivity", hi: "झुकाव" }, { en: "Profligate", hi: "फिजूलखर्च" }, { en: "Pugnacious", hi: "झगड़ालू" }, { en: "Recluse", hi: "वैरागी" },
-        { en: "Sanctimonious", hi: "पाखंडी" }, { en: "Serendipity", hi: "आकस्मिक लाभ" }, { en: "Sycophant", hi: "चापलूस" }, { en: "Taciturn", hi: "अल्पभाषी" }, { en: "Tenuous", hi: "तुच्छ" },
-        { en: "Trepidation", hi: "घबराहट" }, { en: "Unequivocal", hi: "स्पष्ट" }, { en: "Venerate", hi: "सम्मान करना" }, { en: "Veracity", hi: "सच्चाई" }, { en: "Vociferous", hi: "कोलाहलकारी" }
-      ];
-
-      // सभी शब्दों की एक मास्टर लिस्ट (Easy से Hard के क्रम में)
-      const masterVocabList = [
-        ...easyVocab,
-        ...mediumVocab,
-        ...hardVocab,
-        ...advancedVocab
-      ];
-
-      // ऑप्शंस जनरेट करने के लिए सभी हिंदी अर्थों का कलेक्शन
       const allHindiMeanings = masterVocabList.map(v => v.hi);
 
-      // रैंडम शफल करने का फंक्शन
       function shuffleArray(array) {
         let shuffled = [...array];
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -586,34 +522,25 @@
         return shuffled;
       }
 
-      // 3 गलत विकल्प (Wrong Options) बनाने की तकनीक
       function generateOptions(correctAnswer) {
         let options = [correctAnswer];
         while (options.length < 4) {
           let randomMeaning = allHindiMeanings[Math.floor(Math.random() * allHindiMeanings.length)];
-          if (!options.includes(randomMeaning)) {
-            options.push(randomMeaning);
-          }
+          if (!options.includes(randomMeaning)) options.push(randomMeaning);
         }
         return shuffleArray(options);
       }
 
-      // ===============================================
-      // ZERO REPETITION LEVEL GENERATOR LOGIC
-      // ===============================================
+      // Zero Repetition Dynamic Level Generator
       const levels = {};
-      const WORDS_PER_LEVEL = 10; // हर लेवल में 10 अलग शब्द
+      const WORDS_PER_LEVEL = 5; 
       const TOTAL_WORDS = masterVocabList.length;
 
       for (let levelNum = 1; levelNum <= 500; levelNum++) {
         let levelWords = [];
-        
         for (let w = 0; w < WORDS_PER_LEVEL; w++) {
-          // गणितीय मॉड्युलस (Modulus) इंडेक्स का इस्तेमाल किया गया है 
-          // जिससे हर शब्द अगले लेवल्स में अपने सही क्रम से ही आए और रिपीट न हो।
           let wordIndex = ((levelNum - 1) * WORDS_PER_LEVEL + w) % TOTAL_WORDS;
           let wordObj = masterVocabList[wordIndex];
-          
           levelWords.push({
             en: wordObj.en,
             hi: wordObj.hi,
@@ -630,17 +557,16 @@
       let streak = parseInt(localStorage.getItem('streak')) || 0;
       let lastDate = localStorage.getItem('lastDate');
 
-      // 🔊 स्पीच सिंथेसिस (Text-to-Speech)
-      function speakWord(text) {
+      // 🔊 स्पीच सिंथेसिस (Text-to-Speech Engine)
+      window.speakWord = function(text, lang = 'en-US') {
         if ('speechSynthesis' in window) {
           window.speechSynthesis.cancel();
           let utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = 'hi-IN';
+          utterance.lang = lang;
           utterance.rate = 0.9;
-          utterance.pitch = 1.0;
           window.speechSynthesis.speak(utterance);
         }
-      }
+      };
 
       // साउंड इफेक्ट्स
       function playSound(type) {
@@ -652,26 +578,20 @@
           gain.connect(ctx.destination);
 
           if (type === 'correct') {
-            osc.frequency.setValueAtTime(659.25, ctx.currentTime);
-            osc.frequency.setValueAtTime(880, ctx.currentTime + 0.1);
-            gain.gain.setValueAtTime(1.0, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+            osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+            osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.6, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
             osc.start();
-            osc.stop(ctx.currentTime + 0.4);
+            osc.stop(ctx.currentTime + 0.3);
           } else if (type === 'wrong') {
             osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(200, ctx.currentTime);
-            osc.frequency.setValueAtTime(120, ctx.currentTime + 0.15);
-            gain.gain.setValueAtTime(1.0, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.45);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.45);
-          } else { 
-            osc.frequency.setValueAtTime(500, ctx.currentTime);
+            osc.frequency.setValueAtTime(180, ctx.currentTime);
+            osc.frequency.setValueAtTime(110, ctx.currentTime + 0.12);
             gain.gain.setValueAtTime(0.6, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
             osc.start();
-            osc.stop(ctx.currentTime + 0.1);
+            osc.stop(ctx.currentTime + 0.35);
           }
         } catch (e) {}
       }
@@ -696,7 +616,7 @@
         }
       }
 
-      // होम लेवल पाथ UI
+      // लेवल्स होम स्क्रीन
       window.loadLevelScreen = function() {
         checkStreak();
         updateStats();
@@ -707,11 +627,8 @@
               <h3>SECTION 1 • 500 LEVELS</h3>
               <h1>welcome to THE Deepak vocabulary.Com</h1>
             </div>
-            <div class="banner-logo">
-              🐼
-            </div>
+            <div class="banner-logo">🐼</div>
           </div>
-
           <div class="path-container">
         `;
 
@@ -733,7 +650,7 @@
 
           pathHtml += `
             <div class="path-node-wrapper ${offsetClass}">
-              <div class="path-node ${isUnlocked ? 'unlocked' : 'locked'} ${isGift && isUnlocked ? 'gift-node' : ''}" onclick="startLevel(${lvl}, ${isUnlocked}, ${isGift})">
+              <div class="path-node ${isUnlocked ? 'unlocked' : 'locked'} ${isGift && isUnlocked ? 'gift-node' : ''}" onclick="startLevel(${lvl}, ${isUnlocked})">
                 ${nodeIcon}
               </div>
               <div class="level-label">Lvl ${lvl} ${isGift ? '🎁' : ''}</div>
@@ -743,15 +660,14 @@
 
         pathHtml += `</div>`;
         document.getElementById('app').innerHTML = pathHtml;
-      }
+      };
 
-      window.startLevel = function(level, isUnlocked, isGift) {
+      window.startLevel = function(level, isUnlocked) {
         if (!isUnlocked) {
           playSound('wrong');
           alert(`🔒 Level ${level} लॉक है! पिछला लेवल पूरा करें।`);
           return;
         }
-        playSound('click');
         currentLevel = level;
         currentWord = 0;
         loadWord();
@@ -771,15 +687,21 @@
 
           <div class="quiz-card">
             <p style="color: #7c3aed; font-weight: 800; font-size: 13px;">LEVEL ${currentLevel} • WORD ${currentWord + 1}/${levels[currentLevel].length}</p>
-            <h1 class="word-display">${wordData.en}</h1>
+            
+            <div class="word-card-box">
+              <h1 class="word-display">${wordData.en}</h1>
+              <button class="speaker-btn" onclick="speakWord('${wordData.en}')">🔊</button>
+            </div>
 
             <div class="options-grid" id="options"></div>
+            <button class="continue-btn" id="continue-btn" onclick="nextQ()">Next Question ❯</button>
           </div>
         `;
 
+        // स्वचालित उच्चारण
+        speakWord(wordData.en);
+
         let optionsDiv = document.getElementById('options');
-        
-        // हर बार बटन के विकल्पों को शफल करना
         let randomizedOptions = shuffleArray(wordData.options);
 
         randomizedOptions.forEach(opt => {
@@ -795,59 +717,54 @@
         let buttons = document.querySelectorAll('#options button');
         buttons.forEach(b => b.style.pointerEvents = 'none');
 
-        // सही शब्द का उच्चारण
-        speakWord(correct);
+        speakWord(correct, 'hi-IN');
 
         if (selected === correct) {
-          score += 10;
           playSound('correct');
           btn.classList.add('correct-btn');
-          setTimeout(() => { nextQ(); }, 1200);
         } else {
           playSound('wrong');
           btn.classList.add('wrong-btn');
 
           buttons.forEach(b => {
-            if (b.innerText === correct) {
-              b.classList.add('correct-btn');
-            }
+            if (b.innerText === correct) b.classList.add('correct-btn');
           });
-          setTimeout(() => { nextQ(); }, 1800);
         }
-        localStorage.setItem('score', score);
-        updateStats();
+
+        // कंटिन्यू बटन दिखाएँ ताकि यूज़र खुद आगे बढ़े
+        document.getElementById('continue-btn').style.display = 'block';
       };
 
-      function nextQ() {
+      window.nextQ = function() {
         currentWord++;
         if (currentWord >= levels[currentLevel].length) {
           let isGiftLevel = (currentLevel % 5 === 0);
+          let earnedGems = 5; 
+          if (isGiftLevel) earnedGems += 50; 
+
           if (!completedLevels.includes(currentLevel)) {
             completedLevels.push(currentLevel);
-            if (isGiftLevel) {
-              score += 50;
-              localStorage.setItem('score', score);
-            }
+            score += earnedGems;
+            localStorage.setItem('score', score);
             localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
           }
+          
+          updateStats();
           playSound('correct');
-          showLevelSuccessScreen();
+          triggerConfetti();
+          showLevelSuccessScreen(earnedGems, isGiftLevel);
         } else {
           loadWord();
         }
-      }
+      };
 
-      function showLevelSuccessScreen() {
+      function showLevelSuccessScreen(earnedGems, isGiftLevel) {
         document.getElementById('app').innerHTML = `
           <div class="level-complete-card">
-            <div class="trophy-container">
-              <div class="trophy-icon">🏆</div>
-            </div>
+            <div class="trophy-icon">${isGiftLevel ? '🎁' : '🏆'}</div>
 
-            <div class="purple-ribbon">Level ${currentLevel}</div>
-            <div class="completed-title">Completed!</div>
-            
-            <div class="green-check-circle">✓</div>
+            <div class="purple-ribbon">Level ${currentLevel} Complete!</div>
+            <div class="reward-badge">💎 +${earnedGems} Gems Earned!</div>
 
             <button class="next-level-btn-green" onclick="goToNextLevel()">
               <span>Next Level</span>
@@ -858,14 +775,52 @@
       }
 
       window.goToNextLevel = function() {
-        playSound('click');
         let nextLvl = currentLevel + 1;
         if (nextLvl <= 500) {
-          startLevel(nextLvl, true, (nextLvl % 5 === 0));
+          startLevel(nextLvl, true);
         } else {
           loadLevelScreen();
         }
       };
+
+      // कंफ़ेट्टी (Confetti Blast)
+      function triggerConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+
+        let particles = [];
+        for (let i = 0; i < 65; i++) {
+          particles.push({
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            vx: (Math.random() - 0.5) * 12,
+            vy: (Math.random() - 0.5) * 12 - 4,
+            size: Math.random() * 8 + 4,
+            color: ['#7c3aed', '#a855f7', '#22c55e', '#f59e0b', '#ef4444'][Math.floor(Math.random() * 5)]
+          });
+        }
+
+        function render() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.2;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          });
+          if (particles[0].y < canvas.height) {
+            requestAnimationFrame(render);
+          } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          }
+        }
+        render();
+      }
 
       loadLevelScreen();
     });
